@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrxs Xit Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0a0a0f',
+                        darkGray: '#16161f',
+                        neonBlue: '#00ccff',
+                        lightGray: '#2a2a38'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .glass {
+                background: rgba(22, 22, 31, 0.65);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(0, 204, 255, 0.15);
+            }
+            .neon-text {
+                text-shadow: 0 0 8px #00ccff, 0 0 15px #00ccff70;
+            }
+            .neon-border {
+                box-shadow: 0 0 6px #00ccff50, inset 0 0 4px #00ccff20;
+            }
+            .tab-active {
+                background: rgba(0, 204, 255, 0.15);
+                color: #00ccff;
+                border-color: #00ccff;
+                box-shadow: 0 0 10px #00ccff40;
+            }
+            .fade-in {
+                animation: fadeIn 0.4s ease-out forwards;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(8px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        }
+
+        body {
+            background: linear-gradient(135deg, #05050a 0%, #0f0f1a 100%);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Efecto partículas simples */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="font-inter text-white min-h-screen relative z-10">
+    <!-- Fondo de partículas -->
+    <div class="particles"></div>
+
+    <div class="container mx-auto px-4 py-8 max-w-5xl">
+        <!-- Encabezado -->
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold neon-text text-neonBlue mb-3">Andrxs Xit Store</h1>
+            <p class="text-gray-300 text-lg">Bienvenido. Aquí encontrarás los mejores productos del mercado.</p>
+        </header>
+
+        <!-- Pestañas de navegación -->
+        <nav class="flex flex-wrap justify-center gap-3 mb-10">
+            <button class="tab-btn glass px-5 py-3 rounded-xl border border-transparent hover:border-neonBlue/40 transition-all duration-300" data-tab="android">
+                📱 Android
+            </button>
+            <button class="tab-btn glass px-5 py-3 rounded-xl border border-transparent hover:border-neonBlue/40 transition-all duration-300" data-tab="proxy-android">
+                🌐 Proxy Android
+            </button>
+            <button class="tab-btn glass px-5 py-3 rounded-xl border border-transparent hover:border-neonBlue/40 transition-all duration-300" data-tab="ios">
+                🍎 iOS
+            </button>
+            <button class="tab-btn glass px-5 py-3 rounded-xl border border-transparent hover:border-neonBlue/40 transition-all duration-300" data-tab="proxy-ios">
+                🌐 Proxy iOS
+            </button>
+        </nav>
+
+        <!-- Contenido de secciones -->
+        <main>
+            <!-- Sección Android -->
+            <section id="android" class="tab-content fade-in">
+                <h2 class="text-2xl font-semibold mb-6 text-center text-neonBlue">📱 Productos Android</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Prime Hook -->
+                    <div class="glass rounded-2xl p-6 neon-border hover:shadow-[0_0_15px_rgba(0,204,255,0.2)] transition-shadow duration-300">
+                        <h3 class="text-xl font-bold mb-4 text-white">👅 PRIME HOOK 💀</h3>
+                        <ul class="space-y-3">
+                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                                <span>1 Día</span>
+                                <span class="text-neonBlue font-medium">3 USD</span>
+                            </li>
+                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                                <span>3 Días</span>
+                                <span class="text-neonBlue font-medium">4 USD</span>
+                            </li>
+                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                                <span>7 Días</span>
+                                <span class="text-neonBlue font-medium">6 USD</span>
+                            </li>
+                            <li class="flex justify-between items-center">
+                                <span>30 Días</span>
+                                <span class="text-neonBlue font-medium">13 USD</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Drip Client -->
+                    <div class="glass rounded-2xl p-6 neon-border hover:shadow-[0_0_15px_rgba(0,204,255,0.2)] transition-shadow duration-300">
+                        <h3 class="text-xl font-bold mb-4 text-white">📱 DRIP CLIENT MOBILE</h3>
+                        <ul class="space-y-3">
+                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                                <span>1 Día</span>
+                                <span class="text-neonBlue font-medium">2 USD</span>
+                            </li>
+                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                                <span>3 Días</span>
+                                <span class="text-neonBlue font-medium">5 USD</span>
+                            </li>
+                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                                <span>7 Días</span>
+                                <span class="text-neonBlue font-medium">7 USD</span>
+                            </li>
+                            <li class="flex justify-between items-center">
+                                <span>30 Días</span>
+                                <span class="text-neonBlue font-medium">13 USD</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- HG Cheats -->
+                    <div class="glass rounded-2xl p-6 neon-border md:col-span-2 hover:shadow-[0_0_15px_rgba(0,204,255,0.2)] transition-shadow duration-300">
+                        <h3 class="text-xl font-bold mb-4 text-white">🔥 HG CHEATS APK MOD</h3>
+                        <ul class="space-y-3">
+                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                                <span>1 Día</span>
+                                <span class="text-neonBlue font-medium">3 USD</span>
+                            </li>
+                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                                <span>10 Días</span>
+                                <span class="text-neonBlue font-medium">7 USD</span>
+                            </li>
+                            <li class="flex justify-between items-center">
+                                <span>30 Días</span>
+                                <span class="text-neonBlue font-medium">14 USD</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección Proxy Android -->
+            <section id="proxy-android" class="tab-content hidden fade-in">
+                <h2 class="text-2xl font-semibold mb-6 text-center text-neonBlue">🌐 Proxy Android</h2>
+                <div class="glass rounded-2xl p-6 max-w-xl mx-auto neon-border hover:shadow-[0_0_15px_rgba(0,204,255,0.2)] transition-shadow duration-300">
+                    <h3 class="text-xl font-bold mb-4 text-white">👻 PROXY DRIP CLIENT ☠️</h3>
+                    <ul class="space-y-3">
+                        <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                            <span>1 Día</span>
+                            <span class="text-neonBlue font-medium">3 USD</span>
+                        </li>
+                        <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                            <span>3 Días</span>
+                            <span class="text-neonBlue font-medium">5 USD</span>
+                        </li>
+                        <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                            <span>7 Días</span>
+                            <span class="text-neonBlue font-medium">7 USD</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>30 Días</span>
+                            <span class="text-neonBlue font-medium">16 USD</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Sección iOS -->
+            <section id="ios" class="tab-content hidden fade-in">
+                <h2 class="text-2xl font-semibold mb-6 text-center text-neonBlue">🍎 Productos iOS</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Flourite -->
+                    <div class="glass rounded-2xl p-6 neon-border hover:shadow-[0_0_15px_rgba(0,204,255,0.2)] transition-shadow duration-300">
+                        <h3 class="text-xl font-bold mb-4 text-white">🔥 FLOURITE 🍎</h3>
+                        <ul class="space-y-3">
+                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                                <span>1 Día</span>
+                                <span class="text-neonBlue font-medium">6 USD</span>
+                            </li>
+                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                                <span>1 Día + Certificado</span>
+                                <span class="text-neonBlue font-medium">13 USD</span>
+                            </li>
+                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                                <span>7 Días</span>
+                                <span class="text-neonBlue font-medium">17 USD</span>
+                            </li>
+                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                                <span>7 Días + Certificado</span>
+                                <span class="text-neonBlue font-medium">24 USD</span>
+                            </li>
+                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                                <span>30 Días</span>
+                                <span class="text-neonBlue font-medium">35 USD</span>
+                            </li>
+                            <li class="flex justify-between items-center">
+                                <span>30 Días + Certificado</span>
+                                <span class="text-neonBlue font-medium">43 USD</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Monite Cheats -->
+                    <div class="glass rounded-2xl p-6 neon-border hover:shadow-[0_0_15px_rgba(0,204,255,0.2)] transition-shadow duration-300">
+                        <h3 class="text-xl font-bold mb-4 text-white">✅ MONITE CHEATS</h3>
+                        <ul class="space-y-3">
+                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                                <span>Certificado</span>
+                                <span class="text-neonBlue font-medium">8 USD</span>
+                            </li>
+                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                                <span>Key 7 Días</span>
+                                <span class="text-neonBlue font-medium">12 USD</span>
+                            </li>
+                            <li class="flex justify-between items-center">
+                                <span>Key 30 Días</span>
+                                <span class="text-neonBlue font-medium">27 USD</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección Proxy iOS -->
+            <section id="proxy-ios" class="tab-content hidden fade-in">
+                <h2 class="text-2xl font-semibold mb-6 text-center text-neonBlue">🌐 Proxy iOS</h2>
+                <div class="glass rounded-2xl p-6 max-w-xl mx-auto neon-border hover:shadow-[0_0_15px_rgba(0,204,255,0.2)] transition-shadow duration-300">
+                    <h3 class="text-xl font-bold mb-4 text-white">👽 PROXY POTATSO iOS 💥</h3>
+                    <ul class="space-y-3">
+                        <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                            <span>1 Día</span>
+                            <span class="text-neonBlue font-medium">4 USD</span>
+                        </li>
+                        <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                            <span>7 Días</span>
+                            <span class="text-neonBlue font-medium">10 USD</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>30 Días</span>
+                            <span class="text-neonBlue font-medium">26 USD</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer class="mt-12 text-center text-gray-400 text-sm">
+            <p>Versión de prueba técnica • Solo para verificar funcionamiento</p>
+        </footer>
+    </div>
+
+    <script>
+        // Navegación entre pestañas
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Quitar estado activo
+                tabButtons.forEach(btn => btn.classList.remove('tab-active'));
+                tabContents.forEach(content => content.classList.add('hidden'));
+
+                // Agregar estado activo
+                button.classList.add('tab-active');
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId).classList.remove('hidden');
+            });
+        });
+
+        // Activar primera pestaña por defecto
+        tabButtons[0].classList.add('tab-active');
+
+        // Efecto partículas básico
+        const particlesContainer = document.querySelector('.particles');
+        for (let i = 0; i < 40; i++) {
+            const particle = document.createElement('div');
+            particle.style.position = 'absolute';
+            particle.style.width = Math.random() * 3 + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.background = 'rgba(0, 204, 255, ' + (Math.random() * 0.3 + 0.1) + ')';
+            particle.style.borderRadius = '50%';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animation = 'float ' + (Math.random() * 15 + 10) + 's linear infinite';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Animación de flotación
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0% { transform: translate(0, 0); }
+                50% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px); }
+                100% { transform: translate(0, 0); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
