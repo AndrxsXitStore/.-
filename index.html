@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Andrxs Xit Store</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -32,18 +31,18 @@
             }
             .neon-text {
                 text-shadow: 0 0 8px #00ccff, 0 0 15px #00ccff70, 0 0 25px #00ccff50;
-                animation: brillar 2s ease-in-out infinite alternate;
+                animation: brillar 1.8s ease-in-out infinite alternate;
             }
             @keyframes brillar {
-                from { filter: brightness(1); }
-                to { filter: brightness(1.4); }
+                from { filter:brightness(1); }
+                to { filter:brightness(1.4); }
             }
             .neon-border {
                 box-shadow: 0 0 6px #00ccff50, inset 0 0 4px #00ccff20;
             }
             .btn-neon {
                 background: linear-gradient(135deg, #00ccff20, #00ccff40);
-                border: 1px solid #00ccff60;
+                border: 1px solid #00ccff50;
                 transition: all 0.3s ease;
             }
             .btn-neon:hover {
@@ -55,11 +54,8 @@
                 animation: fadeIn 0.5s ease-out forwards;
             }
             @keyframes fadeIn {
-                from { opacity: 0; transform: translateY(10px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
-            .modal {
-                backdrop-filter: blur(8px);
+                from { opacity:0; transform:translateY(10px); }
+                to { opacity:1; transform:translateY(0); }
             }
         }
 
@@ -70,11 +66,17 @@
         }
         .particles {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
+            top:0; left:0;
+            width:100%; height:100%;
+            z-index:0;
+        }
+        .pantalla {
+            position: fixed;
+            inset:0;
+            z-index: 999;
+            display:flex;
+            align-items:center;
+            justify-content:center;
         }
     </style>
 </head>
@@ -82,195 +84,349 @@
     <!-- Fondo de partículas -->
     <div class="particles"></div>
 
-    <!-- Modal de Bienvenida -->
-    <div id="bienvenidaModal" class="modal fixed inset-0 flex items-center justify-center bg-dark/80 z-50">
-        <div class="glass rounded-2xl p-8 max-w-xs w-full text-center neon-border fade-in">
-            <h2 class="text-2xl font-bold mb-4 text-neonBlue neon-text">Bienvenido a<br>Andrxs Xit Store</h2>
-            <button id="btnOk" class="btn-neon px-6 py-3 rounded-xl font-semibold">OK</button>
+    <!-- Pantalla 1: Bienvenida -->
+    <div id="pantallaBienvenida" class="pantalla bg-dark/95">
+        <div class="glass rounded-2xl p-8 text-center max-w-md w-full neon-border">
+            <h2 class="text-2xl font-bold mb-6">Bienvenido a Andrxs Xit Store</h2>
+            <button id="btnOk" class="btn-neon px-8 py-3 rounded-xl font-semibold">Ok</button>
         </div>
     </div>
 
-    <!-- Pantalla Principal: Solo nombre brillante + pregunta -->
-    <div id="pantallaPrincipal" class="hidden min-h-screen flex flex-col items-center justify-center px-6 py-10">
-        <h1 class="text-4xl md:text-6xl font-bold mb-10 neon-text text-neonBlue text-center">Andrxs Xit Store</h1>
-        <div class="glass rounded-2xl p-8 max-w-md w-full text-center neon-border fade-in">
-            <p class="text-xl mb-6">¿Confirmas entrar a Comprar?</p>
-            <button id="btnEntrar" class="btn-neon px-8 py-4 rounded-xl font-bold text-lg">Sí, Andrxs Xit</button>
+    <!-- Pantalla 2: Confirmación -->
+    <div id="pantallaConfirmar" class="pantalla bg-dark/95 hidden">
+        <div class="text-center max-w-lg w-full p-6">
+            <h1 class="text-5xl md:text-6xl font-bold neon-text mb-8">Andrxs Xit Store</h1>
+            <p class="text-xl mb-8">¿Confirmas entrar a Comprar?</p>
+            <button id="btnEntrar" class="btn-neon px-8 py-3 rounded-xl font-semibold text-lg">Sí Andrxs Xit</button>
         </div>
     </div>
 
-    <!-- Pantalla de Elección de Producto -->
-    <div id="pantallaEleccion" class="hidden min-h-screen flex flex-col items-center justify-center px-6 py-10">
-        <div class="glass rounded-2xl p-8 max-w-md w-full text-center neon-border fade-in">
-            <p class="text-xl mb-6">¿De qué tipo de producto quieres comprar?</p>
-            <div class="grid gap-4">
-                <a href="#android" class="btn-neon px-6 py-3 rounded-xl font-semibold">📱 Android</a>
-                <a href="#proxy-android" class="btn-neon px-6 py-3 rounded-xl font-semibold">🌐 Android Proxy</a>
-                <a href="#ios" class="btn-neon px-6 py-3 rounded-xl font-semibold">🍎 iOS</a>
-                <a href="#proxy-ios" class="btn-neon px-6 py-3 rounded-xl font-semibold">🌐 iOS Proxy</a>
+    <!-- Pantalla 3: Elegir tipo -->
+    <div id="pantallaElegir" class="pantalla bg-dark/95 hidden">
+        <div class="glass rounded-2xl p-8 text-center max-w-md w-full neon-border">
+            <h2 class="text-2xl font-bold mb-6">¿De qué tipo de producto quieres comprar?</h2>
+            <div class="flex flex-col gap-4">
+                <button data-seccion="android" class="btn-neon px-6 py-3 rounded-xl font-semibold">Android</button>
+                <button data-seccion="proxy-android" class="btn-neon px-6 py-3 rounded-xl font-semibold">Android Proxy</button>
+                <button data-seccion="ios" class="btn-neon px-6 py-3 rounded-xl font-semibold">iOS</button>
+                <button data-seccion="proxy-ios" class="btn-neon px-6 py-3 rounded-xl font-semibold">iOS Proxy</button>
             </div>
         </div>
     </div>
 
-    <!-- Secciones de Productos (igual que versión anterior con enlaces) -->
-    <div id="seccionesProductos" class="hidden container mx-auto px-4 py-8 max-w-5xl">
+    <!-- Contenido principal -->
+    <div id="contenidoPrincipal" class="container mx-auto px-4 py-8 max-w-5xl hidden fade-in">
         <header class="text-center mb-10">
             <h1 class="text-4xl md:text-5xl font-bold neon-text text-neonBlue mb-3">Andrxs Xit Store</h1>
         </header>
 
         <main>
             <!-- Sección Android -->
-            <section id="android" class="tab-content fade-in mb-16">
+            <section id="android" class="tab-content hidden fade-in">
                 <h2 class="text-2xl font-semibold mb-6 text-center text-neonBlue">📱 Productos Android</h2>
                 <div class="grid md:grid-cols-2 gap-6">
-                    <!-- Prime Hook -->
                     <div class="glass rounded-2xl p-6 neon-border hover:shadow-[0_0_15px_rgba(0,204,255,0.2)] transition-shadow duration-300">
                         <h3 class="text-xl font-bold mb-5 text-white">👅 PRIME HOOK 💀</h3>
                         <div class="space-y-3">
-                            <div class="flex justify-between items-center p-2 rounded-lg"><span>1 Día</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">3 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20Prime%20Hook%201%20día." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
-                            <div class="flex justify-between items-center p-2 rounded-lg"><span>3 Días</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">4 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20Prime%20Hook%203%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
-                            <div class="flex justify-between items-center p-2 rounded-lg"><span>7 Días</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">6 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20Prime%20Hook%207%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
-                            <div class="flex justify-between items-center p-2 rounded-lg"><span>30 Días</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">13 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20Prime%20Hook%2030%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
+                                <span>1 Día</span>
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">3 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Prime%20Hook%201%20día." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
+                                <span>3 Días</span>
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">4 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Prime%20Hook%203%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
+                                <span>7 Días</span>
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">6 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Prime%20Hook%207%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
+                                <span>30 Días</span>
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">13 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Prime%20Hook%2030%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <!-- Drip Client Mobile -->
                     <div class="glass rounded-2xl p-6 neon-border hover:shadow-[0_0_15px_rgba(0,204,255,0.2)] transition-shadow duration-300">
                         <h3 class="text-xl font-bold mb-5 text-white">📱 DRIP CLIENT MOBILE</h3>
                         <div class="space-y-3">
-                            <div class="flex justify-between items-center p-2 rounded-lg"><span>1 Día</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">2 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20Drip%20Client%20Mobile%201%20día." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
-                            <div class="flex justify-between items-center p-2 rounded-lg"><span>3 Días</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">5 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20Drip%20Client%20Mobile%203%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
-                            <div class="flex justify-between items-center p-2 rounded-lg"><span>7 Días</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">7 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20Drip%20Client%20Mobile%207%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
-                            <div class="flex justify-between items-center p-2 rounded-lg"><span>30 Días</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">13 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20Drip%20Client%20Mobile%2030%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
+                                <span>1 Día</span>
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">2 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Drip%20Client%20Mobile%201%20día." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
+                                <span>3 Días</span>
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">5 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Drip%20Client%20Mobile%203%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
+                                <span>7 Días</span>
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">7 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Drip%20Client%20Mobile%207%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
+                                <span>30 Días</span>
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">13 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Drip%20Client%20Mobile%2030%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <!-- HG Cheats -->
                     <div class="glass rounded-2xl p-6 neon-border md:col-span-2 hover:shadow-[0_0_15px_rgba(0,204,255,0.2)] transition-shadow duration-300">
                         <h3 class="text-xl font-bold mb-5 text-white">🔥 HG CHEATS APK MOD</h3>
                         <div class="space-y-3">
-                            <div class="flex justify-between items-center p-2 rounded-lg"><span>1 Día</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">3 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20HG%20Cheats%20APK%20MOD%201%20día." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
-                            <div class="flex justify-between items-center p-2 rounded-lg"><span>10 Días</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">7 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20HG%20Cheats%20APK%20MOD%2010%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
-                            <div class="flex justify-between items-center p-2 rounded-lg"><span>30 Días</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">14 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20HG%20Cheats%20APK%20MOD%2030%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
+                                <span>1 Día</span>
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">3 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20HG%20Cheats%20APK%20MOD%201%20día." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
+                                <span>10 Días</span>
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">7 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20HG%20Cheats%20APK%20MOD%2010%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
+                                <span>30 Días</span>
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">14 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20HG%20Cheats%20APK%20MOD%2030%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- Sección Proxy Android -->
-            <section id="proxy-android" class="tab-content fade-in mb-16">
+            <section id="proxy-android" class="tab-content hidden fade-in">
                 <h2 class="text-2xl font-semibold mb-6 text-center text-neonBlue">🌐 Proxy Android</h2>
                 <div class="glass rounded-2xl p-6 max-w-xl mx-auto neon-border hover:shadow-[0_0_15px_rgba(0,204,255,0.2)] transition-shadow duration-300">
                     <h3 class="text-xl font-bold mb-5 text-white">👻 PROXY DRIP CLIENT ☠️</h3>
                     <div class="space-y-3">
-                        <div class="flex justify-between items-center p-2 rounded-lg"><span>1 Día</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">3 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20Proxy%20Drip%20Client%201%20día." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
-                        <div class="flex justify-between items-center p-2 rounded-lg"><span>3 Días</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">5 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20Proxy%20Drip%20Client%203%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
-                        <div class="flex justify-between items-center p-2 rounded-lg"><span>7 Días</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">7 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20Proxy%20Drip%20Client%207%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
-                        <div class="flex justify-between items-center p-2 rounded-lg"><span>30 Días</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">16 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20Proxy%20Drip%20Client%2030%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
+                        <div class="flex justify-between items-center p-2 rounded-lg">
+                            <span>1 Día</span>
+                            <div class="flex gap-3 items-center">
+                                <span class="text-neonBlue font-medium">3 USD</span>
+                                <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Proxy%20Drip%20Client%201%20día." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center p-2 rounded-lg">
+                            <span>3 Días</span>
+                            <div class="flex gap-3 items-center">
+                                <span class="text-neonBlue font-medium">5 USD</span>
+                                <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Proxy%20Drip%20Client%203%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center p-2 rounded-lg">
+                            <span>7 Días</span>
+                            <div class="flex gap-3 items-center">
+                                <span class="text-neonBlue font-medium">7 USD</span>
+                                <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Proxy%20Drip%20Client%207%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center p-2 rounded-lg">
+                            <span>30 Días</span>
+                            <div class="flex gap-3 items-center">
+                                <span class="text-neonBlue font-medium">16 USD</span>
+                                <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Proxy%20Drip%20Client%2030%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <!-- Sección iOS -->
-            <section id="ios" class="tab-content fade-in mb-16">
+            <section id="ios" class="tab-content hidden fade-in">
                 <h2 class="text-2xl font-semibold mb-6 text-center text-neonBlue">🍎 Productos iOS</h2>
                 <div class="grid md:grid-cols-2 gap-6">
-                    <!-- Flourite -->
                     <div class="glass rounded-2xl p-6 neon-border hover:shadow-[0_0_15px_rgba(0,204,255,0.2)] transition-shadow duration-300">
                         <h3 class="text-xl font-bold mb-5 text-white">🔥 FLOURITE 🍎</h3>
                         <div class="space-y-3">
-                            <div class="flex justify-between items-center p-2 rounded-lg"><span>1 Día</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">6 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20Flourite%201%20día." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
-                            <div class="flex justify-between items-center p-2 rounded-lg"><span>1 Día + Certificado</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">13 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20Flourite%201%20día%20con%20certificado." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
-                            <div class="flex justify-between items-center p-2 rounded-lg"><span>7 Días</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">17 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20Flourite%207%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
-                            <div class="flex justify-between items-center p-2 rounded-lg"><span>7 Días + Certificado</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">24 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20Flourite%207%20días%20con%20certificado." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
-                            <div class="flex justify-between items-center p-2 rounded-lg"><span>30 Días</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">35 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20Flourite%2030%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
-                            <div class="flex justify-between items-center p-2 rounded-lg"><span>30 Días + Certificado</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">43 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20Flourite%2030%20días%20con%20certificado." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
+                                <span>1 Día</span>
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">6 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Flourite%201%20día." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
+                                <span>1 Día + Certificado</span>
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">13 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Flourite%201%20día%20con%20certificado." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
+                                <span>7 Días</span>
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">17 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Flourite%207%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
+                                <span>7 Días + Certificado</span>
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">24 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Flourite%207%20días%20con%20certificado." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
+                                <span>30 Días</span>
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">35 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Flourite%2030%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
+                                <span>30 Días + Certificado</span>
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">43 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Flourite%2030%20días%20con%20certificado." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <!-- Monite Cheats -->
                     <div class="glass rounded-2xl p-6 neon-border hover:shadow-[0_0_15px_rgba(0,204,255,0.2)] transition-shadow duration-300">
                         <h3 class="text-xl font-bold mb-5 text-white">✅ MONITE CHEATS</h3>
                         <div class="space-y-3">
-                            <div class="flex justify-between items-center p-2 rounded-lg"><span>Certificado</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">8 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20el%20certificado%20de%20Monite%20Cheats." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
-                            <div class="flex justify-between items-center p-2 rounded-lg"><span>Key 7 Días</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">12 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20la%20Key%20de%20Monite%20Cheats%20de%207%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
-                            <div class="flex justify-between items-center p-2 rounded-lg"><span>Key 30 Días</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">27 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20la%20Key%20de%20Monite%20Cheats%20de%2030%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
+                                <span>Certificado</span>
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">8 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20el%20certificado%20de%20Monite%20Cheats." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
+                                <span>Key 7 Días</span>
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">12 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20la%20Key%20de%20Monite%20Cheats%20de%207%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
+                                <span>Key 30 Días</span>
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">27 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20la%20Key%20de%20Monite%20Cheats%20de%2030%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- Sección Proxy iOS -->
-            <section id="proxy-ios" class="tab-content fade-in mb-16">
+            <section id="proxy-ios" class="tab-content hidden fade-in">
                 <h2 class="text-2xl font-semibold mb-6 text-center text-neonBlue">🌐 Proxy iOS</h2>
                 <div class="glass rounded-2xl p-6 max-w-xl mx-auto neon-border hover:shadow-[0_0_15px_rgba(0,204,255,0.2)] transition-shadow duration-300">
                     <h3 class="text-xl font-bold mb-5 text-white">👽 PROXY POTATSO iOS 💥</h3>
                     <div class="space-y-3">
-                        <div class="flex justify-between items-center p-2 rounded-lg"><span>1 Día</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">4 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20Proxy%20Potatso%20iOS%201%20día." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
-                        <div class="flex justify-between items-center p-2 rounded-lg"><span>7 Días</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">10 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20Proxy%20Potatso%20iOS%207%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
-                        <div class="flex justify-between items-center p-2 rounded-lg"><span>30 Días</span><div class="flex gap-3 items-center"><span class="text-neonBlue font-medium">26 USD</span><a href="https://wa.me/573219925715?text=Quiero%20comprar%20Proxy%20Potatso%20iOS%2030%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a></div></div>
+                        <div class="flex justify-between items-center p-2 rounded-lg">
+                            <span>1 Día</span>
+                            <div class="flex gap-3 items-center">
+                                <span class="text-neonBlue font-medium">4 USD</span>
+                                <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Proxy%20Potatso%20iOS%201%20día." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center p-2 rounded-lg">
+                            <span>7 Días</span>
+                            <div class="flex gap-3 items-center">
+                                <span class="text-neonBlue font-medium">10 USD</span>
+                                <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Proxy%20Potatso%20iOS%207%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center p-2 rounded-lg">
+                            <span>30 Días</span>
+                            <div class="flex gap-3 items-center">
+                                <span class="text-neonBlue font-medium">26 USD</span>
+                                <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Proxy%20Potatso%20iOS%2030%20días." target="_blank" class="btn-neon px-3 py-1 rounded-lg text-sm">Comprar</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
         </main>
 
         <footer class="mt-12 text-center text-gray-400 text-sm">
-            <p>Versión de prueba técnica</p>
+            <p>Versión de prueba • Solo para verificar funcionamiento</p>
         </footer>
     </div>
 
     <script>
-        // Control de pantallas
-        const bienvenidaModal = document.getElementById('bienvenidaModal');
+        // Navegación entre pantallas
         const btnOk = document.getElementById('btnOk');
-        const pantallaPrincipal = document.getElementById('pantallaPrincipal');
+        const pantallaBienvenida = document.getElementById('pantallaBienvenida');
+        const pantallaConfirmar = document.getElementById('pantallaConfirmar');
         const btnEntrar = document.getElementById('btnEntrar');
-        const pantallaEleccion = document.getElementById('pantallaEleccion');
-        const seccionesProductos = document.getElementById('seccionesProductos');
+        const pantallaElegir = document.getElementById('pantallaElegir');
+        const contenidoPrincipal = document.getElementById('contenidoPrincipal');
+        const btnElegir = document.querySelectorAll('[data-seccion]');
+        const tabContenidos = document.querySelectorAll('.tab-content');
 
         btnOk.addEventListener('click', () => {
-            bienvenidaModal.classList.add('hidden');
-            pantallaPrincipal.classList.remove('hidden');
+            pantallaBienvenida.classList.add('hidden');
+            pantallaConfirmar.classList.remove('hidden');
         });
 
         btnEntrar.addEventListener('click', () => {
-            pantallaPrincipal.classList.add('hidden');
-            pantallaEleccion.classList.remove('hidden');
+            pantallaConfirmar.classList.add('hidden');
+            pantallaElegir.classList.remove('hidden');
         });
 
-        // Al hacer clic en opción de categoría: ocultar elección y mostrar sección correspondiente
-        pantallaEleccion.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', e => {
-                e.preventDefault();
-                pantallaEleccion.classList.add('hidden');
-                seccionesProductos.classList.remove('hidden');
-                // Ocultar todas y mostrar solo la elegida
-                document.querySelectorAll('.tab-content').forEach(s => s.classList.add('hidden'));
-                const targetId = link.getAttribute('href').substring(1);
-                document.getElementById(targetId).classList.remove('hidden');
-                // Desplazar suavemente
-                document.getElementById(targetId).scrollIntoView({behavior:'smooth'});
+        btnElegir.forEach(boton => {
+            boton.addEventListener('click', () => {
+                pantallaElegir.classList.add('hidden');
+                contenidoPrincipal.classList.remove('hidden');
+                tabContenidos.forEach(sec => sec.classList.add('hidden'));
+                document.getElementById(boton.dataset.seccion).classList.remove('hidden');
             });
         });
 
         // Efecto partículas
-        const particlesContainer = document.querySelector('.particles');
+        const contenedorParticulas = document.querySelector('.particles');
         for (let i = 0; i < 40; i++) {
             const p = document.createElement('div');
             p.style.cssText = `
                 position:absolute; width:${Math.random()*3+1}px; height:${Math.random()*3+1}px;
                 background:rgba(0,204,255,${Math.random()*0.3+0.1}); border-radius:50%;
                 left:${Math.random()*100}%; top:${Math.random()*100}%;
-                animation:float ${Math.random()*15+10}s linear infinite;
+                animation:flotar ${Math.random()*15+10}s linear infinite;
             `;
-            particlesContainer.appendChild(p);
+            contenedorParticulas.appendChild(p);
         }
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes float {
+
+        const estiloAnimacion = document.createElement('style');
+        estiloAnimacion.textContent = `
+            @keyframes flotar {
                 0% { transform: translate(0,0); }
                 50% { transform: translate(${Math.random()*80-40}px, ${Math.random()*80-40}px); }
                 100% { transform: translate(0,0); }
             }
         `;
-        document.head.appendChild(style);
+        document.head.appendChild(estiloAnimacion);
     </script>
 </body>
 </html>
