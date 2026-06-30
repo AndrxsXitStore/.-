@@ -273,6 +273,44 @@
             100% { width: 100%; }
         }
 
+        /* Modal de selección */
+        .modal {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 5, 0.85);
+            backdrop-filter: blur(8px);
+        }
+        .modal.active {
+            display: flex;
+            animation: modalFade 0.3s ease-out;
+        }
+        @keyframes modalFade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal-content {
+            width: 90%;
+            max-width: 420px;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+        .option {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .option:hover {
+            transform: translateX(5px);
+            border-color: #00f0ff;
+            box-shadow: 0 0 15px rgba(0,240,255,0.3);
+        }
+
         /* Clases generales */
         .content-layer {
             position: relative;
@@ -326,6 +364,19 @@
             </button>
         </div>
     </nav>
+
+    <!-- Modal de selección CATEGORÍA + DURACIÓN -->
+    <div class="modal" id="mainModal">
+        <div class="modal-content glass neon-border rounded-xl p-6">
+            <div class="flex justify-between items-center mb-5">
+                <h3 class="text-2xl font-bold font-tech text-metallic" id="modalTitle">Selecciona tu opción</h3>
+                <button id="closeModal" class="text-textLight hover:text-neonCyan text-xl transition-colors">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+            <div id="modalContent" class="space-y-3"></div>
+        </div>
+    </div>
 
     <!-- Pantalla de inicio -->
     <section id="inicio" class="min-h-screen flex flex-col items-center justify-center px-4 content-layer">
@@ -390,9 +441,16 @@
                         <div class="flex justify-between items-center"><span>7 Días</span><span class="text-neonCyan font-bold">$6 USD</span></div>
                         <div class="flex justify-between items-center"><span>30 Días</span><span class="text-neonCyan font-bold">$13 USD</span></div>
                     </div>
-                    <a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%201%20Día" target="_blank" class="btn-premium wave-effect block w-full text-center py-2 rounded-lg border border-neonCyan/40 text-neonCyan font-bold">
+                    <button class="btn-premium wave-effect open-category-modal block w-full text-center py-2 rounded-lg border border-neonCyan/40 text-neonCyan font-bold" 
+                        data-product="Prime Hook"
+                        data-categories='[
+                            {"name":"📱 Android","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20Android%201%20Día"},{"label":"3 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20Android%203%20Días"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20Android%207%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20Android%2030%20Días"}]},
+                            {"name":"🌐 Android Proxy","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20Proxy%20Android%201%20Día"},{"label":"3 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20Proxy%20Android%203%20Días"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20Proxy%20Android%207%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20Proxy%20Android%2030%20Días"}]},
+                            {"name":"🍎 iOS","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20iOS%201%20Día"},{"label":"3 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20iOS%203%20Días"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20iOS%207%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20iOS%2030%20Días"}]},
+                            {"name":"🌐 Proxy iOS","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20Proxy%20iOS%201%20Día"},{"label":"3 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20Proxy%20iOS%203%20Días"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20Proxy%20iOS%207%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20Proxy%20iOS%2030%20Días"}]}
+                        ]'>
                         Comprar
-                    </a>
+                    </button>
                 </div>
 
                 <!-- Drip Client Mobile -->
@@ -408,9 +466,16 @@
                         <div class="flex justify-between items-center"><span>7 Días</span><span class="text-neonCyan font-bold">$7 USD</span></div>
                         <div class="flex justify-between items-center"><span>30 Días</span><span class="text-neonCyan font-bold">$13 USD</span></div>
                     </div>
-                    <a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Mobile%201%20Día" target="_blank" class="btn-premium wave-effect block w-full text-center py-2 rounded-lg border border-neonCyan/40 text-neonCyan font-bold">
+                    <button class="btn-premium wave-effect open-category-modal block w-full text-center py-2 rounded-lg border border-neonCyan/40 text-neonCyan font-bold" 
+                        data-product="Drip Client"
+                        data-categories='[
+                            {"name":"📱 Android","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Android%201%20Día"},{"label":"3 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Android%203%20Días"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Android%207%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Android%2030%20Días"}]},
+                            {"name":"🌐 Android Proxy","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Proxy%20Android%201%20Día"},{"label":"3 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Proxy%20Android%203%20Días"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Proxy%20Android%207%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Proxy%20Android%2030%20Días"}]},
+                            {"name":"🍎 iOS","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20iOS%201%20Día"},{"label":"3 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20iOS%203%20Días"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20iOS%207%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20iOS%2030%20Días"}]},
+                            {"name":"🌐 Proxy iOS","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Proxy%20iOS%201%20Día"},{"label":"3 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Proxy%20iOS%203%20Días"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Proxy%20iOS%207%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Proxy%20iOS%2030%20Días"}]}
+                        ]'>
                         Comprar
-                    </a>
+                    </button>
                 </div>
 
                 <!-- HG Cheats -->
@@ -425,9 +490,16 @@
                         <div class="flex justify-between items-center"><span>10 Días</span><span class="text-neonCyan font-bold">$7 USD</span></div>
                         <div class="flex justify-between items-center"><span>30 Días</span><span class="text-neonCyan font-bold">$14 USD</span></div>
                     </div>
-                    <a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20APK%20MOD%201%20Día" target="_blank" class="btn-premium wave-effect block w-full text-center py-2 rounded-lg border border-neonCyan/40 text-neonCyan font-bold">
+                    <button class="btn-premium wave-effect open-category-modal block w-full text-center py-2 rounded-lg border border-neonCyan/40 text-neonCyan font-bold" 
+                        data-product="HG Cheats"
+                        data-categories='[
+                            {"name":"📱 Android","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20Android%201%20Día"},{"label":"10 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20Android%2010%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20Android%2030%20Días"}]},
+                            {"name":"🌐 Android Proxy","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20Proxy%20Android%201%20Día"},{"label":"10 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20Proxy%20Android%2010%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20Proxy%20Android%2030%20Días"}]},
+                            {"name":"🍎 iOS","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20iOS%201%20Día"},{"label":"10 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20iOS%2010%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20iOS%2030%20Días"}]},
+                            {"name":"🌐 Proxy iOS","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20Proxy%20iOS%201%20Día"},{"label":"10 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20Proxy%20iOS%2010%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20Proxy%20iOS%2030%20Días"}]}
+                        ]'>
                         Comprar
-                    </a>
+                    </button>
                 </div>
 
                 <!-- Cuban Mods -->
@@ -442,9 +514,16 @@
                         <div class="flex justify-between items-center"><span>7 Días</span><span class="text-neonCyan font-bold">$10 USD</span></div>
                         <div class="flex justify-between items-center"><span>30 Días</span><span class="text-neonCyan font-bold">$22 USD</span></div>
                     </div>
-                    <a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%201%20Día" target="_blank" class="btn-premium wave-effect block w-full text-center py-2 rounded-lg border border-neonCyan/40 text-neonCyan font-bold">
+                    <button class="btn-premium wave-effect open-category-modal block w-full text-center py-2 rounded-lg border border-neonCyan/40 text-neonCyan font-bold" 
+                        data-product="Cuban Mods"
+                        data-categories='[
+                            {"name":"📱 Android","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%20Android%201%20Día"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%20Android%207%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%20Android%2030%20Días"}]},
+                            {"name":"🌐 Android Proxy","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%20Proxy%20Android%201%20Día"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%20Proxy%20Android%207%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%20Proxy%20Android%2030%20Días"}]},
+                            {"name":"🍎 iOS","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%20iOS%201%20Día"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%20iOS%207%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%20iOS%2030%20Días"}]},
+                            {"name":"🌐 Proxy iOS","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%20Proxy%20iOS%201%20Día"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%20Proxy%20iOS%207%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%20Proxy%20iOS%2030%20Días"}]}
+                        ]'>
                         Comprar
-                    </a>
+                    </button>
                 </div>
 
                 <!-- Pato Team Azul -->
@@ -460,275 +539,8 @@
                         <div class="flex justify-between items-center"><span>15 Días</span><span class="text-neonCyan font-bold">$12 USD</span></div>
                         <div class="flex justify-between items-center"><span>30 Días</span><span class="text-neonCyan font-bold">$20 USD</span></div>
                     </div>
-                    <a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Pato%20Team%20Azul%203%20Días" target="_blank" class="btn-premium wave-effect block w-full text-center py-2 rounded-lg border border-neonCyan/40 text-neonCyan font-bold">
-                        Comprar
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección de Proxies -->
-    <section id="proxies" class="py-16 content-layer">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold font-tech text-center text-metallic mb-12">🌐 Proxies Premium</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-
-                <!-- Proxy Drip -->
-                <div class="glass neon-border rounded-xl p-6 card-3d slide-up">
-                    <div class="h-40 bg-gradient-to-br from-neonCyan/20 to-neonPurple/20 rounded-lg mb-4 flex items-center justify-center">
-                        <i class="fa fa-random fa-4x text-neonCyan"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold font-tech text-metallic mb-2">👻 PROXY DRIP CLIENT</h3>
-                    <p class="text-yellow-400 text-sm mb-4">⭐ Premium</p>
-                    <div class="space-y-3 mb-6">
-                        <div class="flex justify-between items-center"><span>1 Día</span><span class="text-neonCyan font-bold">$3 USD</span></div>
-                        <div class="flex justify-between items-center"><span>3 Días</span><span class="text-neonCyan font-bold">$5 USD</span></div>
-                        <div class="flex justify-between items-center"><span>7 Días</span><span class="text-neonCyan font-bold">$7 USD</span></div>
-                        <div class="flex justify-between items-center"><span>30 Días</span><span class="text-neonCyan font-bold">$16 USD</span></div>
-                    </div>
-                    <a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Proxy%20Drip%20Client%201%20Día" target="_blank" class="btn-premium wave-effect block w-full text-center py-2 rounded-lg border border-neonCyan/40 text-neonCyan font-bold">
-                        Comprar
-                    </a>
-                </div>
-
-                <!-- Proxy Potatso iOS -->
-                <div class="glass neon-border rounded-xl p-6 card-3d slide-up">
-                    <div class="h-40 bg-gradient-to-br from-neonCyan/20 to-neonPurple/20 rounded-lg mb-4 flex items-center justify-center">
-                        <i class="fa fa-apple fa-4x text-neonCyan"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold font-tech text-metallic mb-2">👽 PROXY POTATSO iOS</h3>
-                    <p class="text-yellow-400 text-sm mb-4">⭐ Premium</p>
-                    <div class="space-y-3 mb-6">
-                        <div class="flex justify-between items-center"><span>1 Día</span><span class="text-neonCyan font-bold">$4 USD</span></div>
-                        <div class="flex justify-between items-center"><span>7 Días</span><span class="text-neonCyan font-bold">$10 USD</span></div>
-                        <div class="flex justify-between items-center"><span>30 Días</span><span class="text-neonCyan font-bold">$26 USD</span></div>
-                    </div>
-                    <a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Proxy%20Potatso%20iOS%201%20Día" target="_blank" class="btn-premium wave-effect block w-full text-center py-2 rounded-lg border border-neonCyan/40 text-neonCyan font-bold">
-                        Comprar
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección iOS -->
-    <section id="ios" class="py-16 content-layer">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold font-tech text-center text-metallic mb-12">🍎 Productos iOS</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-
-                <!-- Flourite -->
-                <div class="glass neon-border rounded-xl p-6 card-3d slide-up">
-                    <div class="h-40 bg-gradient-to-br from-neonCyan/20 to-neonPurple/20 rounded-lg mb-4 flex items-center justify-center">
-                        <i class="fa fa-gem fa-4x text-neonCyan"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold font-tech text-metallic mb-2">🔥 FLOURITE</h3>
-                    <p class="text-yellow-400 text-sm mb-4">⭐ Premium</p>
-                    <div class="space-y-3 mb-6">
-                        <div class="flex justify-between items-center"><span>1 Día</span><span class="text-neonCyan font-bold">$6 USD</span></div>
-                        <div class="flex justify-between items-center"><span>1 Día + Cert</span><span class="text-neonCyan font-bold">$13 USD</span></div>
-                        <div class="flex justify-between items-center"><span>7 Días</span><span class="text-neonCyan font-bold">$17 USD</span></div>
-                        <div class="flex justify-between items-center"><span>7 Días + Cert</span><span class="text-neonCyan font-bold">$24 USD</span></div>
-                        <div class="flex justify-between items-center"><span>30 Días</span><span class="text-neonCyan font-bold">$35 USD</span></div>
-                    </div>
-                    <a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Flourite%201%20Día" target="_blank" class="btn-premium wave-effect block w-full text-center py-2 rounded-lg border border-neonCyan/40 text-neonCyan font-bold">
-                        Comprar
-                    </a>
-                </div>
-
-                <!-- Monite Cheats -->
-                <div class="glass neon-border rounded-xl p-6 card-3d slide-up">
-                    <div class="h-40 bg-gradient-to-br from-neonCyan/20 to-neonPurple/20 rounded-lg mb-4 flex items-center justify-center">
-                        <i class="fa fa-check-circle fa-4x text-neonCyan"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold font-tech text-metallic mb-2">✅ MONITE CHEATS</h3>
-                    <p class="text-yellow-400 text-sm mb-4">⭐ Premium</p>
-                    <div class="space-y-3 mb-6">
-                        <div class="flex justify-between items-center"><span>Certificado</span><span class="text-neonCyan font-bold">$8 USD</span></div>
-                        <div class="flex justify-between items-center"><span>Key 7 Días</span><span class="text-neonCyan font-bold">$12 USD</span></div>
-                        <div class="flex justify-between items-center"><span>Key 30 Días</span><span class="text-neonCyan font-bold">$27 USD</span></div>
-                    </div>
-                    <a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20el%20Certificado%20de%20Monite%20Cheats" target="_blank" class="btn-premium wave-effect block w-full text-center py-2 rounded-lg border border-neonCyan/40 text-neonCyan font-bold">
-                        Comprar
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="glass border-t border-neonCyan/20 py-10 content-layer">
-        <div class="container mx-auto px-4 text-center">
-            <div class="text-4xl font-bold font-tech text-metallic mb-4">━━━━━━━━━━━━</div>
-            <h3 class="text-3xl font-bold font-tech text-metallic my-2">ANDRXS XIT STORE</h3>
-            <div class="text-neonCyan my-4">
-                <p>⚡ Premium Cheats</p>
-                <p>⚡ Premium Proxies</p>
-                <p>⚡ Actualizaciones constantes</p>
-            </div>
-            <div class="flex justify-center gap-6 text-2xl my-6">
-                <a href="https://wa.me/573219925715" target="_blank" class="text-neonCyan hover:text-neonPurple transition-colors"><i class="fa fa-whatsapp"></i></a>
-                <a href="#" class="text-neonCyan hover:text-neonPurple transition-colors"><i class="fa fa-telegram"></i></a>
-                <a href="#" class="text-neonCyan hover:text-neonPurple transition-colors"><i class="fa fa-youtube-play"></i></a>
-            </div>
-            <div class="text-4xl font-bold font-tech text-metallic mb-4">━━━━━━━━━━━━</div>
-            <p class="text-textLight mt-4">© 2026 Andrxs Xit | Todos los derechos reservados</p>
-        </div>
-    </footer>
-
-    <!-- Botón volver arriba -->
-    <button id="backToTop" class="fixed bottom-6 right-6 z-50 glass w-12 h-12 rounded-full flex items-center justify-center text-neonCyan shadow-lg hover:scale-110 transition-transform opacity-0 invisible">
-        <i class="fa fa-arrow-up"></i>
-    </button>
-
-    <!-- Audio -->
-    <audio id="backgroundAudio" loop preload="auto">
-        <source src="https://assets.mixkit.co/sfx/preview/mixkit-digital-world-ambient-1172.mp3" type="audio/mpeg">
-    
-    <audio id="clickSound" preload="auto">
-        <source src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.mp3" type="audio/mpeg">
-    
-
-    <script>
-        // Pantalla de carga
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loadingScreen').style.opacity = '0';
-                setTimeout(() => document.getElementById('loadingScreen').remove(), 800);
-            }, 2500);
-        });
-
-        // Partículas
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 1000 } },
-                color: { value: ['#00f0ff', '#9933ff'] },
-                shape: { type: 'circle' },
-                opacity: { value: 0.5, random: true },
-                size: { value: 2, random: true },
-                line_linked: { enable: true, distance: 150, color: '#00f0ff', opacity: 0.2, width: 1 },
-                move: { enable: true, speed: 1.5, direction: 'none', random: true, out_mode: 'out' }
-            },
-            interactivity: {
-                events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' } },
-                modes: { grab: { distance: 200, line_linked: { opacity: 0.5 } } }
-            }
-        });
-
-        // Cursor personalizado
-        const cursor = document.getElementById('customCursor');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.transform = `translate(${e.clientX - 12}px, ${e.clientY - 12}px)`;
-            const trail = document.createElement('div');
-            trail.className = 'cursor-trail';
-            trail.style.transform = `translate(${e.clientX - 4}px, ${e.clientY - 4}px)`;
-            document.body.appendChild(trail);
-            setTimeout(() => trail.remove(), 500);
-        });
-
-        // Contadores animados
-        const counters = document.querySelectorAll('.counter');
-        const counterObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const counter = entry.target;
-                    const target = parseInt(counter.dataset.target);
-                    let count = 0;
-                    const interval = setInterval(() => {
-                        count += Math.ceil(target / 40);
-                        if (count >= target) {
-                            count = target;
-                            clearInterval(interval);
-                        }
-                        counter.textContent = count.toLocaleString();
-                    }, 50);
-                    counterObserver.unobserve(counter);
-                }
-            });
-        }, { threshold: 0.5 });
-        counters.forEach(c => counterObserver.observe(c));
-
-        // Navegación y sonidos
-        const btnEntrar = document.getElementById('btnEntrar');
-        const clickSound = document.getElementById('clickSound');
-        const bgAudio = document.getElementById('backgroundAudio');
-        let soundOn = false;
-
-        btnEntrar.addEventListener('click', () => {
-            clickSound.play();
-            document.getElementById('android').scrollIntoView({ behavior: 'smooth' });
-        });
-
-        document.getElementById('toggleSound').addEventListener('click', () => {
-            soundOn = !soundOn;
-            if (soundOn) {
-                bgAudio.volume = 0.2;
-                bgAudio.play();
-                this.innerHTML = '<i class="fa fa-volume-up"></i>';
-            } else {
-                bgAudio.pause();
-                this.innerHTML = '<i class="fa fa-volume-off"></i>';
-            }
-        });
-
-        // Modo oscuro/claro
-        document.getElementById('toggleMode').addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-            document.body.classList.toggle('light');
-        });
-
-        // Botón volver arriba
-        const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
-                backToTop.classList.remove('opacity-0', 'invisible');
-                backToTop.classList.add('opacity-100', 'visible');
-            } else {
-                backToTop.classList.add('opacity-0', 'invisible');
-                backToTop.classList.remove('opacity-100', 'visible');
-            }
-        });
-        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-        // Efecto Matrix
-        const canvas = document.getElementById('matrixRain');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ<>[]{}|\\/';
-        const fontSize = 14;
-        const columns = Math.floor(canvas.width / fontSize);
-        const drops = Array(columns).fill(1);
-
-        function drawMatrix() {
-            ctx.fillStyle = 'rgba(0, 0, 5, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#00f0ff';
-            ctx.font = `${fontSize}px monospace`;
-            for (let i = 0; i < drops.length; i++) {
-                const text = chars[Math.floor(Math.random() * chars.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-                drops[i]++;
-            }
-        }
-        setInterval(drawMatrix, 50);
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        // Efecto aparición al hacer scroll
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('fade-in');
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('section > div').forEach(el => observer.observe(el));
-    </script>
-</body>
-</html>
+                    <button class="btn-premium wave-effect open-category-modal block w-full text-center py-2 rounded-lg border border-neonCyan/40 text-neonCyan font-bold" 
+                        data-product="Pato Team Azul"
+                        data-categories='[
+                            {"name":"📱 Android","durations":[{"label":"3 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Pato%20Team%20Azul%20Android%203%20Días"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Pato%20Team%20Azul%20Android%207%20Días"},{"label":"15 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Pato%20Team%20Azul%20Android%2015%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Pato%20Team%20Azul%20Android%2030%20Días"}]},
+                            {"name":"🌐 Android Proxy","durations":[{"label":"3 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs
