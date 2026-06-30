@@ -37,36 +37,12 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: none;
+            cursor: default;
         }
 
         body {
             overflow-x: hidden;
             scroll-behavior: smooth;
-        }
-
-        /* Cursor personalizado luminoso */
-        .custom-cursor {
-            position: fixed;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(0,240,255,0.8) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease;
-            mix-blend-mode: screen;
-        }
-        .cursor-trail {
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #00f0ff;
-            pointer-events: none;
-            z-index: 9998;
-            opacity: 0.6;
-            filter: blur(2px);
         }
 
         /* Fondo animado */
@@ -93,21 +69,11 @@
             animation: gridMove 20s linear infinite;
         }
         @keyframes gridMove {
-            0% { transform: translateZ(0) translateY(0); }
-            100% { transform: translateZ(0) translateY(40px); }
-        }
-        .matrix-rain {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 3;
-            opacity: 0.12;
-            pointer-events: none;
+            0% { transform: translateY(0); }
+            100% { transform: translateY(40px); }
         }
 
-        /* Glassmorphism y efectos */
+        /* Glassmorphism */
         .glass {
             background: rgba(8, 10, 20, 0.65);
             backdrop-filter: blur(16px) saturate(180%);
@@ -115,13 +81,8 @@
             border: 1px solid rgba(0, 240, 255, 0.15);
             box-shadow: 0 8px 32px rgba(0, 240, 255, 0.1);
         }
-        .light .glass {
-            background: rgba(255, 255, 255, 0.75);
-            border: 1px solid rgba(153, 51, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(153, 51, 255, 0.1);
-        }
 
-        /* Bordes neón animados */
+        /* Bordes neón */
         .neon-border {
             position: relative;
             overflow: hidden;
@@ -149,100 +110,37 @@
             100% { left: 100%; }
         }
 
-        /* Texto metálico y brillante */
+        /* Texto brillante */
         .text-metallic {
             background: linear-gradient(180deg, #ffffff 0%, #e0f7ff 30%, #80d8ff 60%, #ffffff 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             filter: drop-shadow(0 0 6px rgba(0,240,255,0.6));
-            animation: textGlow 3s ease-in-out infinite alternate;
-        }
-        @keyframes textGlow {
-            from { filter: drop-shadow(0 0 4px rgba(0,240,255,0.5)); }
-            to { filter: drop-shadow(0 0 12px rgba(153,51,255,0.7)); }
         }
 
-        /* Tarjetas 3D */
+        /* Tarjetas */
         .card-3d {
-            transform-style: preserve-3d;
-            perspective: 1000px;
             transition: all 0.5s ease;
         }
         .card-3d:hover {
-            transform: scale(1.05) rotateX(5deg) rotateY(-5deg);
+            transform: translateY(-5px);
             box-shadow: 0 0 30px rgba(0,240,255,0.4), 0 0 60px rgba(153,51,255,0.2);
         }
 
-        /* Botones con efecto de luz */
+        /* Botones */
         .btn-premium {
             position: relative;
             overflow: hidden;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
             z-index: 2;
         }
-        .btn-premium::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0,240,255,0.4), rgba(153,51,255,0.4), transparent);
-            transition: left 0.7s ease;
-            z-index: -1;
-        }
-        .btn-premium:hover::before {
-            left: 100%;
-        }
         .btn-premium:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 20px rgba(0,240,255,0.6), 0 0 40px rgba(153,51,255,0.3);
-        }
-        .wave-effect {
-            position: relative;
-            overflow: hidden;
-        }
-        .wave-effect:active::after {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            border-radius: 50%;
-            background: rgba(0,240,255,0.3);
-            animation: wave 0.6s ease-out;
-        }
-        @keyframes wave {
-            to { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(0,240,255,0.5);
         }
 
-        /* Animaciones de entrada */
-        .fade-in {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .zoom-in {
-            animation: zoomIn 0.7s ease-out forwards;
-        }
-        @keyframes zoomIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        .slide-up {
-            animation: slideUp 0.6s ease-out forwards;
-        }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Carga inicial */
+        /* Pantalla de carga */
         .loading-screen {
             position: fixed;
             inset: 0;
@@ -252,7 +150,11 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.8s ease;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
         }
         .progress-bar {
             width: 280px;
@@ -264,7 +166,7 @@
         }
         .progress-fill {
             height: 100%;
-            width: 0%;
+            width: 100%;
             background: linear-gradient(90deg, #00f0ff, #9933ff);
             animation: loadProgress 2.5s ease-out forwards;
         }
@@ -273,7 +175,7 @@
             100% { width: 100%; }
         }
 
-        /* Modal de selección */
+        /* Modal */
         .modal {
             position: fixed;
             inset: 0;
@@ -286,11 +188,6 @@
         }
         .modal.active {
             display: flex;
-            animation: modalFade 0.3s ease-out;
-        }
-        @keyframes modalFade {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
         .modal-content {
             width: 90%;
@@ -311,7 +208,6 @@
             box-shadow: 0 0 15px rgba(0,240,255,0.3);
         }
 
-        /* Clases generales */
         .content-layer {
             position: relative;
             z-index: 10;
@@ -320,7 +216,7 @@
 </head>
 <body class="dark bg-darkBg text-white min-h-screen transition-colors duration-500">
 
-    <!-- Carga inicial -->
+    <!-- Pantalla de Carga -->
     <div class="loading-screen" id="loadingScreen">
         <h2 class="text-4xl font-bold font-tech text-metallic">ANDRXS XIT</h2>
         <p class="text-neonCyan mt-2">Cargando sistema...</p>
@@ -332,40 +228,22 @@
     <!-- Fondo -->
     <div id="particles-js"></div>
     <div class="grid-bg"></div>
-    <canvas class="matrix-rain" id="matrixRain"></canvas>
 
-    <!-- Cursor personalizado -->
-    <div class="custom-cursor" id="customCursor"></div>
-
-    <!-- Botones de control -->
-    <div class="fixed top-5 right-5 z-50 flex gap-3">
-        <button id="toggleSound" class="glass w-10 h-10 rounded-full flex items-center justify-center text-neonCyan hover:scale-110 transition-transform">
-            <i class="fa fa-volume-up"></i>
-        </button>
-        <button id="toggleMode" class="glass w-10 h-10 rounded-full flex items-center justify-center text-neonCyan hover:scale-110 transition-transform">
-            <i class="fa fa-moon-o dark:block hidden"></i>
-            <i class="fa fa-sun-o text-yellow-400 dark:hidden block"></i>
-        </button>
-    </div>
-
-    <!-- Barra de navegación -->
+    <!-- Navegación -->
     <nav class="sticky top-0 z-40 glass border-b border-neonCyan/20 content-layer">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="#" class="text-2xl font-bold font-tech text-metallic">ANDRXS XIT</a>
             <div class="hidden md:flex gap-6 text-sm font-medium">
-                <a href="#inicio" class="hover:text-neonCyan transition-colors flex items-center gap-1"><i class="fa fa-home"></i> Inicio</a>
-                <a href="#android" class="hover:text-neonCyan transition-colors flex items-center gap-1"><i class="fa fa-android"></i> Android</a>
-                <a href="#ios" class="hover:text-neonCyan transition-colors flex items-center gap-1"><i class="fa fa-apple"></i> iOS</a>
-                <a href="#proxies" class="hover:text-neonCyan transition-colors flex items-center gap-1"><i class="fa fa-globe"></i> Proxies</a>
-                <a href="https://wa.me/573219925715" target="_blank" class="hover:text-neonCyan transition-colors flex items-center gap-1"><i class="fa fa-whatsapp"></i> WhatsApp</a>
+                <a href="#inicio" class="hover:text-neonCyan transition-colors"><i class="fa fa-home"></i> Inicio</a>
+                <a href="#android" class="hover:text-neonCyan transition-colors"><i class="fa fa-android"></i> Android</a>
+                <a href="#ios" class="hover:text-neonCyan transition-colors"><i class="fa fa-apple"></i> iOS</a>
+                <a href="#proxies" class="hover:text-neonCyan transition-colors"><i class="fa fa-globe"></i> Proxies</a>
+                <a href="https://wa.me/573219925715" target="_blank" class="hover:text-neonCyan transition-colors"><i class="fa fa-whatsapp"></i> WhatsApp</a>
             </div>
-            <button class="md:hidden text-xl text-neonCyan" id="menuToggle">
-                <i class="fa fa-bars"></i>
-            </button>
         </div>
     </nav>
 
-    <!-- Modal de selección CATEGORÍA + DURACIÓN -->
+    <!-- Modal de Selección -->
     <div class="modal" id="mainModal">
         <div class="modal-content glass neon-border rounded-xl p-6">
             <div class="flex justify-between items-center mb-5">
@@ -378,58 +256,23 @@
         </div>
     </div>
 
-    <!-- Pantalla de inicio -->
+    <!-- Inicio -->
     <section id="inicio" class="min-h-screen flex flex-col items-center justify-center px-4 content-layer">
-        <div class="text-center zoom-in">
-            <div class="mb-6">
-                <div class="text-5xl md:text-7xl font-black font-tech text-metallic tracking-wider">━━━━━━━━━━━━</div>
-                <h1 class="text-6xl md:text-8xl font-black font-tech text-metallic my-4">ANDRXS XIT</h1>
-                <div class="text-5xl md:text-7xl font-black font-tech text-metallic tracking-wider">━━━━━━━━━━━━</div>
-            </div>
-            <p class="text-2xl md:text-3xl text-neonCyan font-bold mt-6">⚡ PREMIUM STORE ⚡</p>
+        <div class="text-center">
+            <h1 class="text-5xl md:text-7xl font-black font-tech text-metallic my-6">ANDRXS XIT</h1>
+            <p class="text-2xl text-neonCyan font-bold">⚡ PREMIUM STORE ⚡</p>
             <p class="text-xl text-textLight mt-4">Hacks • Proxies • iOS • Android</p>
-            <button id="btnEntrar" class="btn-premium wave-effect glass neon-border px-12 py-4 mt-10 text-xl font-bold font-tech text-neonCyan rounded-lg">
-                ENTRAR
-            </button>
         </div>
     </section>
 
-    <!-- Sección de estadísticas -->
-    <section class="py-16 content-layer">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                <div class="glass p-6 rounded-xl fade-in">
-                    <div class="text-3xl text-yellow-400 mb-2">★★★★★</div>
-                    <p class="text-2xl font-bold text-metallic counter" data-target="5000">0</p>
-                    <p class="text-textLight">Clientes Satisfechos</p>
-                </div>
-                <div class="glass p-6 rounded-xl fade-in">
-                    <div class="text-3xl text-neonCyan mb-2"><i class="fa fa-cube"></i></div>
-                    <p class="text-2xl font-bold text-metallic counter" data-target="30">0</p>
-                    <p class="text-textLight">Productos Premium</p>
-                </div>
-                <div class="glass p-6 rounded-xl fade-in">
-                    <div class="text-3xl text-neonPurple mb-2"><i class="fa fa-headphones"></i></div>
-                    <p class="text-2xl font-bold text-metallic">24/7</p>
-                    <p class="text-textLight">Soporte Activo</p>
-                </div>
-                <div class="glass p-6 rounded-xl fade-in">
-                    <div class="text-3xl text-green-400 mb-2"><i class="fa fa-shield"></i></div>
-                    <p class="text-2xl font-bold text-metallic">99.9%</p>
-                    <p class="text-textLight">Seguridad Anti-Ban</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección de Productos Android -->
+    <!-- Productos Android -->
     <section id="android" class="py-16 content-layer">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold font-tech text-center text-metallic mb-12">📱 Productos Android</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
                 <!-- Prime Hook -->
-                <div class="glass neon-border rounded-xl p-6 card-3d slide-up">
+                <div class="glass neon-border rounded-xl p-6 card-3d">
                     <div class="h-40 bg-gradient-to-br from-neonCyan/20 to-neonPurple/20 rounded-lg mb-4 flex items-center justify-center">
                         <i class="fa fa-code fa-4x text-neonCyan"></i>
                     </div>
@@ -453,94 +296,94 @@
                     </button>
                 </div>
 
-                <!-- Drip Client Mobile -->
-                <div class="glass neon-border rounded-xl p-6 card-3d slide-up">
-                    <div class="h-40 bg-gradient-to-br from-neonCyan/20 to-neonPurple/20 rounded-lg mb-4 flex items-center justify-center">
-                        <i class="fa fa-mobile fa-4x text-neonCyan"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold font-tech text-metallic mb-2">📱 DRIP CLIENT</h3>
-                    <p class="text-yellow-400 text-sm mb-4">⭐ Premium</p>
-                    <div class="space-y-3 mb-6">
-                        <div class="flex justify-between items-center"><span>1 Día</span><span class="text-neonCyan font-bold">$2 USD</span></div>
-                        <div class="flex justify-between items-center"><span>3 Días</span><span class="text-neonCyan font-bold">$5 USD</span></div>
-                        <div class="flex justify-between items-center"><span>7 Días</span><span class="text-neonCyan font-bold">$7 USD</span></div>
-                        <div class="flex justify-between items-center"><span>30 Días</span><span class="text-neonCyan font-bold">$13 USD</span></div>
-                    </div>
-                    <button class="btn-premium wave-effect open-category-modal block w-full text-center py-2 rounded-lg border border-neonCyan/40 text-neonCyan font-bold" 
-                        data-product="Drip Client"
-                        data-categories='[
-                            {"name":"📱 Android","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Android%201%20Día"},{"label":"3 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Android%203%20Días"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Android%207%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Android%2030%20Días"}]},
-                            {"name":"🌐 Android Proxy","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Proxy%20Android%201%20Día"},{"label":"3 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Proxy%20Android%203%20Días"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Proxy%20Android%207%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Proxy%20Android%2030%20Días"}]},
-                            {"name":"🍎 iOS","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20iOS%201%20Día"},{"label":"3 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20iOS%203%20Días"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20iOS%207%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20iOS%2030%20Días"}]},
-                            {"name":"🌐 Proxy iOS","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Proxy%20iOS%201%20Día"},{"label":"3 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Proxy%20iOS%203%20Días"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Proxy%20iOS%207%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Proxy%20iOS%2030%20Días"}]}
-                        ]'>
-                        Comprar
-                    </button>
-                </div>
+                <!-- Puedes agregar aquí el resto de productos igual que arriba -->
 
-                <!-- HG Cheats -->
-                <div class="glass neon-border rounded-xl p-6 card-3d slide-up">
-                    <div class="h-40 bg-gradient-to-br from-neonCyan/20 to-neonPurple/20 rounded-lg mb-4 flex items-center justify-center">
-                        <i class="fa fa-fire fa-4x text-neonCyan"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold font-tech text-metallic mb-2">🔥 HG CHEATS MOD</h3>
-                    <p class="text-yellow-400 text-sm mb-4">⭐ Premium</p>
-                    <div class="space-y-3 mb-6">
-                        <div class="flex justify-between items-center"><span>1 Día</span><span class="text-neonCyan font-bold">$3 USD</span></div>
-                        <div class="flex justify-between items-center"><span>10 Días</span><span class="text-neonCyan font-bold">$7 USD</span></div>
-                        <div class="flex justify-between items-center"><span>30 Días</span><span class="text-neonCyan font-bold">$14 USD</span></div>
-                    </div>
-                    <button class="btn-premium wave-effect open-category-modal block w-full text-center py-2 rounded-lg border border-neonCyan/40 text-neonCyan font-bold" 
-                        data-product="HG Cheats"
-                        data-categories='[
-                            {"name":"📱 Android","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20Android%201%20Día"},{"label":"10 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20Android%2010%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20Android%2030%20Días"}]},
-                            {"name":"🌐 Android Proxy","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20Proxy%20Android%201%20Día"},{"label":"10 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20Proxy%20Android%2010%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20Proxy%20Android%2030%20Días"}]},
-                            {"name":"🍎 iOS","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20iOS%201%20Día"},{"label":"10 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20iOS%2010%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20iOS%2030%20Días"}]},
-                            {"name":"🌐 Proxy iOS","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20Proxy%20iOS%201%20Día"},{"label":"10 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20Proxy%20iOS%2010%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20Proxy%20iOS%2030%20Días"}]}
-                        ]'>
-                        Comprar
-                    </button>
-                </div>
+            </div>
+        </div>
+    </section>
 
-                <!-- Cuban Mods -->
-                <div class="glass neon-border rounded-xl p-6 card-3d slide-up">
-                    <div class="h-40 bg-gradient-to-br from-neonCyan/20 to-neonPurple/20 rounded-lg mb-4 flex items-center justify-center">
-                        <i class="fa fa-flag fa-4x text-neonCyan"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold font-tech text-metallic mb-2">🇨🇺 CUBAN MODS</h3>
-                    <p class="text-yellow-400 text-sm mb-4">⭐ Premium</p>
-                    <div class="space-y-3 mb-6">
-                        <div class="flex justify-between items-center"><span>1 Día</span><span class="text-neonCyan font-bold">$5 USD</span></div>
-                        <div class="flex justify-between items-center"><span>7 Días</span><span class="text-neonCyan font-bold">$10 USD</span></div>
-                        <div class="flex justify-between items-center"><span>30 Días</span><span class="text-neonCyan font-bold">$22 USD</span></div>
-                    </div>
-                    <button class="btn-premium wave-effect open-category-modal block w-full text-center py-2 rounded-lg border border-neonCyan/40 text-neonCyan font-bold" 
-                        data-product="Cuban Mods"
-                        data-categories='[
-                            {"name":"📱 Android","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%20Android%201%20Día"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%20Android%207%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%20Android%2030%20Días"}]},
-                            {"name":"🌐 Android Proxy","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%20Proxy%20Android%201%20Día"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%20Proxy%20Android%207%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%20Proxy%20Android%2030%20Días"}]},
-                            {"name":"🍎 iOS","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%20iOS%201%20Día"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%20iOS%207%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%20iOS%2030%20Días"}]},
-                            {"name":"🌐 Proxy iOS","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%20Proxy%20iOS%201%20Día"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%20Proxy%20iOS%207%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%20Proxy%20iOS%2030%20Días"}]}
-                        ]'>
-                        Comprar
-                    </button>
-                </div>
+    <!-- JavaScript COMPLETO -->
+    <script>
+        // Quitar pantalla de carga
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hidden');
+            }, 2800);
+        });
 
-                <!-- Pato Team Azul -->
-                <div class="glass neon-border rounded-xl p-6 card-3d slide-up">
-                    <div class="h-40 bg-gradient-to-br from-neonCyan/20 to-neonPurple/20 rounded-lg mb-4 flex items-center justify-center">
-                        <i class="fa fa-users fa-4x text-neonCyan"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold font-tech text-metallic mb-2">🔵 PATO TEAM AZUL</h3>
-                    <p class="text-yellow-400 text-sm mb-4">⭐ Premium</p>
-                    <div class="space-y-3 mb-6">
-                        <div class="flex justify-between items-center"><span>3 Días</span><span class="text-neonCyan font-bold">$4 USD</span></div>
-                        <div class="flex justify-between items-center"><span>7 Días</span><span class="text-neonCyan font-bold">$7 USD</span></div>
-                        <div class="flex justify-between items-center"><span>15 Días</span><span class="text-neonCyan font-bold">$12 USD</span></div>
-                        <div class="flex justify-between items-center"><span>30 Días</span><span class="text-neonCyan font-bold">$20 USD</span></div>
-                    </div>
-                    <button class="btn-premium wave-effect open-category-modal block w-full text-center py-2 rounded-lg border border-neonCyan/40 text-neonCyan font-bold" 
-                        data-product="Pato Team Azul"
-                        data-categories='[
-                            {"name":"📱 Android","durations":[{"label":"3 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Pato%20Team%20Azul%20Android%203%20Días"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Pato%20Team%20Azul%20Android%207%20Días"},{"label":"15 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Pato%20Team%20Azul%20Android%2015%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Pato%20Team%20Azul%20Android%2030%20Días"}]},
-                            {"name":"🌐 Android Proxy","durations":[{"label":"3 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs
+        // Inicializar partículas
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#00f0ff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: false },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#00f0ff", opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 2, direction: "none", random: false, straight: false, out_mode: "out" }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
+                modes: { repulse: { distance: 100, duration: 0.4 } }
+            },
+            retina_detect: true
+        });
+
+        // Lógica del Modal
+        const modal = document.getElementById('mainModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+        const closeModal = document.getElementById('closeModal');
+
+        // Abrir modal y mostrar categorías
+        document.querySelectorAll('.open-category-modal').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const product = btn.dataset.product;
+                const categories = JSON.parse(btn.dataset.categories);
+
+                modalTitle.textContent = `Selecciona para ${product}`;
+                modalContent.innerHTML = '';
+
+                categories.forEach(cat => {
+                    const div = document.createElement('div');
+                    div.className = 'option glass p-3 rounded-lg border border-neonCyan/20';
+                    div.textContent = cat.name;
+                    div.onclick = () => showDurations(cat.name, cat.durations);
+                    modalContent.appendChild(div);
+                });
+
+                modal.classList.add('active');
+            });
+        });
+
+        // Mostrar duraciones después de elegir categoría
+        function showDurations(categoryName, durations) {
+            modalTitle.textContent = `Duración - ${categoryName}`;
+            modalContent.innerHTML = '';
+
+            durations.forEach(dur => {
+                const div = document.createElement('div');
+                div.className = 'option glass p-3 rounded-lg border border-neonCyan/20 flex justify-between items-center';
+                div.innerHTML = `<span>${dur.label}</span> <i class="fa fa-whatsapp text-green-400"></i>`;
+                div.onclick = () => window.open(dur.url, '_blank');
+                modalContent.appendChild(div);
+            });
+
+            // Botón volver atrás
+            const backBtn = document.createElement('div');
+            backBtn.className = 'option glass p-3 rounded-lg border border-red-400/30 text-center text-red-300 mt-3';
+            backBtn.textContent = '⬅ Volver atrás';
+            backBtn.onclick = () => document.querySelector('.open-category-modal').click();
+            modalContent.appendChild(backBtn);
+        }
+
+        // Cerrar modal
+        closeModal.addEventListener('click', () => modal.classList.remove('active'));
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) modal.classList.remove('active');
+        });
+    </script>
+
+</body>
+</html>
