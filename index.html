@@ -3,25 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrxs Xit | Premium Store</title>
+    <title>Andrxs Xit Store</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        darkBg: '#000005',
-                        darkCard: 'rgba(8, 10, 20, 0.75)',
-                        neonBlue: '#00ccff',
-                        neonPurple: '#9933ff',
-                        neonCyan: '#00f0ff',
-                        lightBg: '#f8fafc',
-                        lightCard: 'rgba(255, 255, 255, 0.85)',
-                        textDark: '#0f172a',
-                        textLight: '#cbd5e1'
+                        darkBg: '#000000',
+                        darkCard: '#08080c',
+                        neonCyan: '#00e5ff',
+                        neonPurple: '#b040ff',
+                        lightBg: '#ffffff',
+                        lightCard: '#f5f5f7',
+                        textDark: '#111111',
+                        textLight: '#b0b0c0'
                     },
                     fontFamily: {
                         tech: ['Orbitron', 'Rajdhani', 'sans-serif']
@@ -31,359 +29,346 @@
         }
     </script>
     <style type="text/tailwindcss">
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap');
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            cursor: default;
-        }
-
-        body {
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        /* Fondo animado */
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1;
-            background: radial-gradient(circle at 50% 50%, #050818 0%, #000005 100%);
-        }
-        .grid-bg {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 2;
-            background-image: 
-                linear-gradient(rgba(0,200,255,0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,200,255,0.08) 1px, transparent 1px);
-            background-size: 40px 40px;
-            animation: gridMove 20s linear infinite;
-        }
-        @keyframes gridMove {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(40px); }
-        }
-
-        /* Glassmorphism */
-        .glass {
-            background: rgba(8, 10, 20, 0.65);
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            border: 1px solid rgba(0, 240, 255, 0.15);
-            box-shadow: 0 8px 32px rgba(0, 240, 255, 0.1);
-        }
-
-        /* Bordes neón */
-        .neon-border {
-            position: relative;
-            overflow: hidden;
-        }
-        .neon-border::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 300%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, #00f0ff, #9933ff, #00f0ff, transparent);
-            animation: neonFlow 6s linear infinite;
-        }
-        .neon-border::after {
-            content: '';
-            position: absolute;
-            inset: 2px;
-            background: inherit;
-            border-radius: inherit;
-            z-index: 1;
-        }
-        @keyframes neonFlow {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        /* Texto brillante */
-        .text-metallic {
-            background: linear-gradient(180deg, #ffffff 0%, #e0f7ff 30%, #80d8ff 60%, #ffffff 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            filter: drop-shadow(0 0 6px rgba(0,240,255,0.6));
-        }
-
-        /* Tarjetas */
-        .card-3d {
-            transition: all 0.5s ease;
-        }
-        .card-3d:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 30px rgba(0,240,255,0.4), 0 0 60px rgba(153,51,255,0.2);
-        }
-
-        /* Botones */
-        .btn-premium {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            z-index: 2;
-        }
-        .btn-premium:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 15px rgba(0,240,255,0.5);
-        }
-
-        /* Pantalla de carga */
-        .loading-screen {
-            position: fixed;
-            inset: 0;
-            background: #000005;
-            z-index: 99999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
-        }
-        .loading-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        .progress-bar {
-            width: 280px;
-            height: 4px;
-            background: rgba(0,240,255,0.2);
-            border-radius: 4px;
-            overflow: hidden;
-            margin-top: 2rem;
-        }
-        .progress-fill {
-            height: 100%;
-            width: 100%;
-            background: linear-gradient(90deg, #00f0ff, #9933ff);
-            animation: loadProgress 2.5s ease-out forwards;
-        }
-        @keyframes loadProgress {
-            0% { width: 0%; }
-            100% { width: 100%; }
-        }
-
-        /* Modal */
-        .modal {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 5, 0.85);
-            backdrop-filter: blur(8px);
-        }
-        .modal.active {
-            display: flex;
-        }
-        .modal-content {
-            width: 90%;
-            max-width: 420px;
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-        }
-        .modal.active .modal-content {
-            transform: scale(1);
-        }
-        .option {
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .option:hover {
-            transform: translateX(5px);
-            border-color: #00f0ff;
-            box-shadow: 0 0 15px rgba(0,240,255,0.3);
-        }
-
-        .content-layer {
-            position: relative;
-            z-index: 10;
+        @layer utilities {
+            .bg-lines {
+                background-image: repeating-linear-gradient(0deg, rgba(0,229,255,0.04) 0, rgba(0,229,255,0.04) 1px, transparent 1px, transparent 22px);
+            }
+            .light .bg-lines {
+                background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.05) 0, rgba(0,0,0,0.05) 1px, transparent 1px, transparent 22px);
+            }
+            .text-metallic {
+                background: linear-gradient(180deg, #ffffff 0%, #d0d0e0 45%, #707080 100%);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                filter: drop-shadow(0 0 3px rgba(0,229,255,0.3));
+            }
+            .light .text-metallic {
+                background: linear-gradient(180deg, #222233 0%, #444455 45%, #888899 100%);
+                filter: drop-shadow(0 0 3px rgba(176,64,255,0.2));
+            }
+            .neon-glow {
+                text-shadow:
+                    0 0 4px #00e5ff80,
+                    0 0 12px #00e5ff60,
+                    0 0 22px #b040ff50;
+                animation: pulseGlow 3s ease-in-out infinite alternate;
+            }
+            @keyframes pulseGlow {
+                from { filter: brightness(1); }
+                to { filter: brightness(1.4); }
+            }
+            .divider-line {
+                width: 80%;
+                height: 1px;
+                margin: 2rem auto;
+                background: linear-gradient(90deg, transparent, #00e5ff 30%, #b040ff 70%, transparent);
+                position: relative;
+            }
+            .divider-line::after {
+                content: '';
+                position: absolute;
+                top: -3px;
+                left: 50%;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: #00e5ff;
+                box-shadow: 0 0 10px #00e5ff, 0 0 20px #b040ff;
+                transform: translateX(-50%);
+            }
+            .btn-main {
+                width: 85%;
+                max-width: 320px;
+                background: rgba(15,15,22,0.7);
+                border: 1px solid rgba(0,229,255,0.15);
+                border-radius: 12px;
+                padding: 14px 20px;
+                font-family: Rajdhani;
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: #e0e0e8;
+                box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+                transition: all 0.4s ease;
+                position: relative;
+                overflow: hidden;
+            }
+            .light .btn-main {
+                background: rgba(240,240,245,0.8);
+                border: 1px solid rgba(0,0,0,0.12);
+                color: #222233;
+            }
+            .btn-main::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(0,229,255,0.2), transparent);
+                transition: left 0.6s ease;
+            }
+            .btn-main:hover {
+                border-color: rgba(0,229,255,0.4);
+                box-shadow: 0 0 18px rgba(0,229,255,0.25);
+                transform: translateY(-2px) scale(1.02);
+            }
+            .btn-main:hover::before {
+                left: 100%;
+            }
+            .fade-zoom {
+                animation: fadeZoom 0.6s ease-out forwards;
+            }
+            @keyframes fadeZoom {
+                from { opacity: 0; transform: scale(0.92) translateY(15px); }
+                to { opacity: 1; transform: scale(1) translateY(0); }
+            }
+            .modal-backdrop {
+                backdrop-filter: blur(12px);
+                background: rgba(0,0,0,0.85);
+            }
+            .light .modal-backdrop {
+                background: rgba(255,255,255,0.9);
+            }
         }
     </style>
 </head>
-<body class="dark bg-darkBg text-white min-h-screen transition-colors duration-500">
+<body class="dark bg-darkBg text-white min-h-screen bg-lines transition-colors duration-500">
 
-    <!-- Pantalla de Carga -->
-    <div class="loading-screen" id="loadingScreen">
-        <h2 class="text-4xl font-bold font-tech text-metallic">ANDRXS XIT</h2>
-        <p class="text-neonCyan mt-2">Cargando sistema...</p>
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
+    <!-- Botón Cambio de Modo Claro/Oscuro -->
+    <button id="toggleMode" class="fixed top-5 right-5 z-50 w-11 h-11 rounded-full flex items-center justify-center bg-darkCard border border-neonCyan/30 shadow-lg hover:shadow-neonCyan/40 transition-all">
+        <i class="fa fa-moon-o text-neonCyan text-xl dark:block hidden"></i>
+        <i class="fa fa-sun-o text-yellow-400 text-xl dark:hidden block"></i>
+    </button>
+
+    <!-- Modal de Bienvenida -->
+    <div id="bienvenidaModal" class="modal-backdrop fixed inset-0 flex items-center justify-center z-50">
+        <div class="bg-darkCard/90 border border-neonCyan/25 rounded-2xl p-9 max-w-sm w-full text-center shadow-[0_0_35px_rgba(0,229,255,0.18)] fade-zoom">
+            <h2 class="text-4xl font-bold font-tech text-metallic neon-glow mb-3">Bienvenido</h2>
+            <h3 class="text-5xl font-bold font-tech text-metallic neon-glow mb-5">Andrxs Xit Store</h3>
+            <p class="text-textLight text-base mb-8">Hacks y Proxies Premium para Free Fire • Máxima Seguridad • Soporte 24/7</p>
+            <button id="btnOk" class="btn-main w-full">✅ ACCEDER</button>
         </div>
     </div>
 
-    <!-- Fondo -->
-    <div id="particles-js"></div>
-    <div class="grid-bg"></div>
-
-    <!-- Navegación -->
-    <nav class="sticky top-0 z-40 glass border-b border-neonCyan/20 content-layer">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold font-tech text-metallic">ANDRXS XIT</a>
-            <div class="hidden md:flex gap-6 text-sm font-medium">
-                <a href="#inicio" class="hover:text-neonCyan transition-colors"><i class="fa fa-home"></i> Inicio</a>
-                <a href="#android" class="hover:text-neonCyan transition-colors"><i class="fa fa-android"></i> Android</a>
-                <a href="#ios" class="hover:text-neonCyan transition-colors"><i class="fa fa-apple"></i> iOS</a>
-                <a href="#proxies" class="hover:text-neonCyan transition-colors"><i class="fa fa-globe"></i> Proxies</a>
-                <a href="https://wa.me/573219925715" target="_blank" class="hover:text-neonCyan transition-colors"><i class="fa fa-whatsapp"></i> WhatsApp</a>
+    <!-- Pantalla Principal -->
+    <div id="pantallaPrincipal" class="hidden min-h-screen flex flex-col items-center justify-center px-6 py-14 fade-zoom">
+        <div class="text-center w-full max-w-md">
+            <!-- Logo / Marca -->
+            <div class="mb-6">
+                <p class="text-textLight uppercase tracking-[0.3em] text-sm mb-4">HACKS & PROXIES PREMIUM</p>
+                <h1 class="text-6xl font-bold font-tech text-metallic neon-glow tracking-wider">ANDRXS XIT</h1>
+                <div class="divider-line"></div>
+                <p class="text-textLight text-lg">Hacks y Proxies Premium para Free Fire<br>Máxima Seguridad • Soporte 24/7</p>
             </div>
-        </div>
-    </nav>
 
-    <!-- Modal de Selección -->
-    <div class="modal" id="mainModal">
-        <div class="modal-content glass neon-border rounded-xl p-6">
-            <div class="flex justify-between items-center mb-5">
-                <h3 class="text-2xl font-bold font-tech text-metallic" id="modalTitle">Selecciona tu opción</h3>
-                <button id="closeModal" class="text-textLight hover:text-neonCyan text-xl transition-colors">
-                    <i class="fa fa-times"></i>
+            <!-- Botones -->
+            <div class="flex flex-col items-center gap-5 mt-10">
+                <button id="btnVerProductos" class="btn-main flex items-center justify-center gap-3">
+                    <i class="fa fa-shopping-bag"></i> VER PRODUCTOS
                 </button>
+                <a href="https://wa.me/573219925715" target="_blank" class="btn-main flex items-center justify-center gap-3">
+                    <i class="fa fa-whatsapp"></i> CONTACTAR AHORA
+                </a>
             </div>
-            <div id="modalContent" class="space-y-3"></div>
+
+            <!-- Datos de confianza -->
+            <div class="grid grid-cols-3 gap-6 mt-16 pt-6 border-t border-neonCyan/15">
+                <div>
+                    <p class="text-3xl font-bold font-tech text-metallic">500+</p>
+                    <p class="text-xs text-textLight uppercase">Clientes</p>
+                </div>
+                <div>
+                    <p class="text-3xl font-bold font-tech text-metallic">99.9%</p>
+                    <p class="text-xs text-textLight uppercase">Estabilidad</p>
+                </div>
+                <div>
+                    <p class="text-3xl font-bold font-tech text-metallic">24/7</p>
+                    <p class="text-xs text-textLight uppercase">Soporte</p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Inicio -->
-    <section id="inicio" class="min-h-screen flex flex-col items-center justify-center px-4 content-layer">
-        <div class="text-center">
-            <h1 class="text-5xl md:text-7xl font-black font-tech text-metallic my-6">ANDRXS XIT</h1>
-            <p class="text-2xl text-neonCyan font-bold">⚡ PREMIUM STORE ⚡</p>
-            <p class="text-xl text-textLight mt-4">Hacks • Proxies • iOS • Android</p>
-        </div>
-    </section>
-
-    <!-- Productos Android -->
-    <section id="android" class="py-16 content-layer">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold font-tech text-center text-metallic mb-12">📱 Productos Android</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                <!-- Prime Hook -->
-                <div class="glass neon-border rounded-xl p-6 card-3d">
-                    <div class="h-40 bg-gradient-to-br from-neonCyan/20 to-neonPurple/20 rounded-lg mb-4 flex items-center justify-center">
-                        <i class="fa fa-code fa-4x text-neonCyan"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold font-tech text-metallic mb-2">👅 PRIME HOOK</h3>
-                    <p class="text-yellow-400 text-sm mb-4">⭐ Premium</p>
-                    <div class="space-y-3 mb-6">
-                        <div class="flex justify-between items-center"><span>1 Día</span><span class="text-neonCyan font-bold">$3 USD</span></div>
-                        <div class="flex justify-between items-center"><span>3 Días</span><span class="text-neonCyan font-bold">$4 USD</span></div>
-                        <div class="flex justify-between items-center"><span>7 Días</span><span class="text-neonCyan font-bold">$6 USD</span></div>
-                        <div class="flex justify-between items-center"><span>30 Días</span><span class="text-neonCyan font-bold">$13 USD</span></div>
-                    </div>
-                    <button class="btn-premium wave-effect open-category-modal block w-full text-center py-2 rounded-lg border border-neonCyan/40 text-neonCyan font-bold" 
-                        data-product="Prime Hook"
-                        data-categories='[
-                            {"name":"📱 Android","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20Android%201%20Día"},{"label":"3 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20Android%203%20Días"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20Android%207%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20Android%2030%20Días"}]},
-                            {"name":"🌐 Android Proxy","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20Proxy%20Android%201%20Día"},{"label":"3 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20Proxy%20Android%203%20Días"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20Proxy%20Android%207%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20Proxy%20Android%2030%20Días"}]},
-                            {"name":"🍎 iOS","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20iOS%201%20Día"},{"label":"3 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20iOS%203%20Días"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20iOS%207%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20iOS%2030%20Días"}]},
-                            {"name":"🌐 Proxy iOS","durations":[{"label":"1 Día","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20Proxy%20iOS%201%20Día"},{"label":"3 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20Proxy%20iOS%203%20Días"},{"label":"7 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20Proxy%20iOS%207%20Días"},{"label":"30 Días","url":"https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%20Proxy%20iOS%2030%20Días"}]}
-                        ]'>
-                        Comprar
-                    </button>
-                </div>
-
-                <!-- Puedes agregar aquí el resto de productos igual que arriba -->
-
+    <!-- Pantalla Elegir Categoría -->
+    <div id="pantallaEleccion" class="hidden min-h-screen flex flex-col items-center justify-center px-6 py-14 fade-zoom">
+        <div class="bg-darkCard/90 border border-neonCyan/25 rounded-2xl p-9 max-w-md w-full text-center shadow-[0_0_35px_rgba(0,229,255,0.18)]">
+            <h2 class="text-3xl font-bold font-tech text-metallic neon-glow mb-7">¿Qué deseas comprar?</h2>
+            <div class="flex flex-col gap-4">
+                <a href="#android" class="btn-main block text-center">📱 Productos Android</a>
+                <a href="#proxy-android" class="btn-main block text-center">🌐 Proxy Android</a>
+                <a href="#ios" class="btn-main block text-center">🍎 Productos iOS</a>
+                <a href="#proxy-ios" class="btn-main block text-center">🌐 Proxy iOS</a>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- JavaScript COMPLETO -->
+    <!-- Secciones de Productos -->
+    <div id="seccionesProductos" class="hidden container mx-auto px-5 py-12 max-w-5xl fade-zoom">
+        <header class="text-center mb-12">
+            <h1 class="text-5xl font-bold font-tech text-metallic neon-glow">Andrxs Xit Store</h1>
+            <div class="divider-line"></div>
+        </header>
+
+        <main>
+            <!-- Android -->
+            <section id="android" class="tab-content hidden mb-16">
+                <h2 class="text-2xl font-bold font-tech text-neonCyan text-center mb-8">📱 Productos Android</h2>
+                <div class="grid md:grid-cols-2 gap-7">
+                    <!-- Prime Hook -->
+                    <div class="bg-darkCard border border-neonCyan/20 rounded-xl p-6 shadow-[0_0_15px_rgba(0,229,255,0.1)] hover:shadow-[0_0_25px_rgba(0,229,255,0.25)] transition-shadow duration-300">
+                        <h3 class="text-xl font-bold font-tech text-metallic mb-5">👅 PRIME HOOK 💀</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>1 Día</span><span class="text-neonCyan font-bold">3 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%201%20Día" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>3 Días</span><span class="text-neonCyan font-bold">4 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%203%20Días" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>7 Días</span><span class="text-neonCyan font-bold">6 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%207%20Días" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>30 Días</span><span class="text-neonCyan font-bold">13 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Prime%20Hook%2030%20Días" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                        </div>
+                    </div>
+
+                    <!-- Drip Client Mobile -->
+                    <div class="bg-darkCard border border-neonCyan/20 rounded-xl p-6 shadow-[0_0_15px_rgba(0,229,255,0.1)] hover:shadow-[0_0_25px_rgba(0,229,255,0.25)] transition-shadow duration-300">
+                        <h3 class="text-xl font-bold font-tech text-metallic mb-5">📱 DRIP CLIENT MOBILE</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>1 Día</span><span class="text-neonCyan font-bold">2 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Mobile%201%20Día" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>3 Días</span><span class="text-neonCyan font-bold">5 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Mobile%203%20Días" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>7 Días</span><span class="text-neonCyan font-bold">7 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Mobile%207%20Días" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>30 Días</span><span class="text-neonCyan font-bold">13 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Drip%20Client%20Mobile%2030%20Días" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                        </div>
+                    </div>
+
+                    <!-- HG Cheats -->
+                    <div class="bg-darkCard border border-neonCyan/20 rounded-xl p-6 shadow-[0_0_15px_rgba(0,229,255,0.1)] hover:shadow-[0_0_25px_rgba(0,229,255,0.25)] transition-shadow duration-300">
+                        <h3 class="text-xl font-bold font-tech text-metallic mb-5">🔥 HG CHEATS APK MOD</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>1 Día</span><span class="text-neonCyan font-bold">3 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20APK%20MOD%201%20Día" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>10 Días</span><span class="text-neonCyan font-bold">7 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20APK%20MOD%2010%20Días" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>30 Días</span><span class="text-neonCyan font-bold">14 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20HG%20Cheats%20APK%20MOD%2030%20Días" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                        </div>
+                    </div>
+
+                    <!-- Cuban Mods -->
+                    <div class="bg-darkCard border border-neonCyan/20 rounded-xl p-6 shadow-[0_0_15px_rgba(0,229,255,0.1)] hover:shadow-[0_0_25px_rgba(0,229,255,0.25)] transition-shadow duration-300">
+                        <h3 class="text-xl font-bold font-tech text-metallic mb-5">🇨🇺 CUBAN MODS</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>1 Día</span><span class="text-neonCyan font-bold">5 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%201%20Día" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>7 Días</span><span class="text-neonCyan font-bold">10 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%207%20Días" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>30 Días</span><span class="text-neonCyan font-bold">22 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Cuban%20Mods%2030%20Días" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                        </div>
+                    </div>
+
+                    <!-- Pato Team Azul -->
+                    <div class="bg-darkCard border border-neonCyan/20 rounded-xl p-6 shadow-[0_0_15px_rgba(0,229,255,0.1)] hover:shadow-[0_0_25px_rgba(0,229,255,0.25)] transition-shadow duration-300 md:col-span-2">
+                        <h3 class="text-xl font-bold font-tech text-metallic mb-5">🔵 PATO TEAM AZUL</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>3 Días</span><span class="text-neonCyan font-bold">4 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Pato%20Team%20Azul%203%20Días" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>7 Días</span><span class="text-neonCyan font-bold">7 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Pato%20Team%20Azul%207%20Días" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>15 Días</span><span class="text-neonCyan font-bold">12 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Pato%20Team%20Azul%2015%20Días" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>30 Días</span><span class="text-neonCyan font-bold">20 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Pato%20Team%20Azul%2030%20Días" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Proxy Android -->
+            <section id="proxy-android" class="tab-content hidden mb-16">
+                <h2 class="text-2xl font-bold font-tech text-neonCyan text-center mb-8">🌐 Proxy Android</h2>
+                <div class="bg-darkCard border border-neonCyan/20 rounded-xl p-6 max-w-xl mx-auto shadow-[0_0_15px_rgba(0,229,255,0.1)] hover:shadow-[0_0_25px_rgba(0,229,255,0.25)] transition-shadow duration-300">
+                    <h3 class="text-xl font-bold font-tech text-metallic mb-5">👻 PROXY DRIP CLIENT ☠️</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>1 Día</span><span class="text-neonCyan font-bold">3 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Proxy%20Drip%20Client%201%20Día" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                        <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>3 Días</span><span class="text-neonCyan font-bold">5 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Proxy%20Drip%20Client%203%20Días" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                        <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>7 Días</span><span class="text-neonCyan font-bold">7 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Proxy%20Drip%20Client%207%20Días" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                        <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>30 Días</span><span class="text-neonCyan font-bold">16 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Proxy%20Drip%20Client%2030%20Días" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- iOS -->
+            <section id="ios" class="tab-content hidden mb-16">
+                <h2 class="text-2xl font-bold font-tech text-neonCyan text-center mb-8">🍎 Productos iOS</h2>
+                <div class="grid md:grid-cols-2 gap-7">
+                    <div class="bg-darkCard border border-neonCyan/20 rounded-xl p-6 shadow-[0_0_15px_rgba(0,229,255,0.1)] hover:shadow-[0_0_25px_rgba(0,229,255,0.25)] transition-shadow duration-300">
+                        <h3 class="text-xl font-bold font-tech text-metallic mb-5">🔥 FLOURITE 🍎</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>1 Día</span><span class="text-neonCyan font-bold">6 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Flourite%201%20Día" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>1 Día + Certificado</span><span class="text-neonCyan font-bold">13 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Flourite%201%20Día%20con%20Certificado" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>7 Días</span><span class="text-neonCyan font-bold">17 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Flourite%207%20Días" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>7 Días + Certificado</span><span class="text-neonCyan font-bold">24 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Flourite%207%20Días%20con%20Certificado" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>30 Días</span><span class="text-neonCyan font-bold">35 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Flourite%2030%20Días" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>30 Días + Certificado</span><span class="text-neonCyan font-bold">43 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Flourite%2030%20Días%20con%20Certificado" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-darkCard border border-neonCyan/20 rounded-xl p-6 shadow-[0_0_15px_rgba(0,229,255,0.1)] hover:shadow-[0_0_25px_rgba(0,229,255,0.25)] transition-shadow duration-300">
+                        <h3 class="text-xl font-bold font-tech text-metallic mb-5">✅ MONITE CHEATS</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>Certificado</span><span class="text-neonCyan font-bold">8 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20el%20Certificado%20de%20Monite%20Cheats" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>Key 7 Días</span><span class="text-neonCyan font-bold">12 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20la%20Key%20de%20Monite%20Cheats%20de%207%20Días" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>Key 30 Días</span><span class="text-neonCyan font-bold">27 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20la%20Key%20de%20Monite%20Cheats%20de%2030%20Días" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Proxy iOS -->
+            <section id="proxy-ios" class="tab-content hidden mb-16">
+                <h2 class="text-2xl font-bold font-tech text-neonCyan text-center mb-8">🌐 Proxy iOS</h2>
+                <div class="bg-darkCard border border-neonCyan/20 rounded-xl p-6 max-w-xl mx-auto shadow-[0_0_15px_rgba(0,229,255,0.1)] hover:shadow-[0_0_25px_rgba(0,229,255,0.25)] transition-shadow duration-300">
+                    <h3 class="text-xl font-bold font-tech text-metallic mb-5">👽 PROXY POTATSO iOS 💥</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>1 Día</span><span class="text-neonCyan font-bold">4 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Proxy%20Potatso%20iOS%201%20Día" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                        <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>7 Días</span><span class="text-neonCyan font-bold">10 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Proxy%20Potatso%20iOS%207%20Días" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                        <div class="flex justify-between items-center p-3 rounded-lg bg-neonCyan/8"><span>30 Días</span><span class="text-neonCyan font-bold">26 USD</span><a href="https://wa.me/573219925715?text=Hola%20Andrxs%20Xit%20Quiero%20Comprar%20Proxy%20Potatso%20iOS%2030%20Días" target="_blank" class="btn-main text-sm py-1.5 px-3">Comprar</a></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center text-textLight text-sm mt-12">
+            <p>© 2026 Andrxs Xit Store | Máxima seguridad y soporte 24/7</p>
+        </footer>
+    </div>
+
     <script>
-        // Quitar pantalla de carga
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loadingScreen').classList.add('hidden');
-            }, 2800);
+        // Cambio de modo Claro/Oscuro
+        const toggleMode = document.getElementById('toggleMode');
+        toggleMode.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            document.body.classList.toggle('light');
         });
 
-        // Inicializar partículas
-        particlesJS("particles-js", {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: "#00f0ff" },
-                shape: { type: "circle" },
-                opacity: { value: 0.5, random: false },
-                size: { value: 3, random: true },
-                line_linked: { enable: true, distance: 150, color: "#00f0ff", opacity: 0.4, width: 1 },
-                move: { enable: true, speed: 2, direction: "none", random: false, straight: false, out_mode: "out" }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
-                modes: { repulse: { distance: 100, duration: 0.4 } }
-            },
-            retina_detect: true
+        // Control de pantallas
+        const bienvenidaModal = document.getElementById('bienvenidaModal');
+        const btnOk = document.getElementById('btnOk');
+        const pantallaPrincipal = document.getElementById('pantallaPrincipal');
+        const btnVerProductos = document.getElementById('btnVerProductos');
+        const pantallaEleccion = document.getElementById('pantallaEleccion');
+        const seccionesProductos = document.getElementById('seccionesProductos');
+
+        btnOk.addEventListener('click', () => {
+            bienvenidaModal.classList.add('hidden');
+            pantallaPrincipal.classList.remove('hidden');
         });
 
-        // Lógica del Modal
-        const modal = document.getElementById('mainModal');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalContent = document.getElementById('modalContent');
-        const closeModal = document.getElementById('closeModal');
+        btnVerProductos.addEventListener('click', () => {
+            pantallaPrincipal.classList.add('hidden');
+            pantallaEleccion.classList.remove('hidden');
+        });
 
-        // Abrir modal y mostrar categorías
-        document.querySelectorAll('.open-category-modal').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const product = btn.dataset.product;
-                const categories = JSON.parse(btn.dataset.categories);
-
-                modalTitle.textContent = `Selecciona para ${product}`;
-                modalContent.innerHTML = '';
-
-                categories.forEach(cat => {
-                    const div = document.createElement('div');
-                    div.className = 'option glass p-3 rounded-lg border border-neonCyan/20';
-                    div.textContent = cat.name;
-                    div.onclick = () => showDurations(cat.name, cat.durations);
-                    modalContent.appendChild(div);
-                });
-
-                modal.classList.add('active');
+        pantallaEleccion.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                pantallaEleccion.classList.add('hidden');
+                seccionesProductos.classList.remove('hidden');
+                document.querySelectorAll('.tab-content').forEach(s => s.classList.add('hidden'));
+                const targetId = link.getAttribute('href').substring(1);
+                document.getElementById(targetId).classList.remove('hidden');
+                document.getElementById(targetId).scrollIntoView({behavior:'smooth'});
             });
-        });
-
-        // Mostrar duraciones después de elegir categoría
-        function showDurations(categoryName, durations) {
-            modalTitle.textContent = `Duración - ${categoryName}`;
-            modalContent.innerHTML = '';
-
-            durations.forEach(dur => {
-                const div = document.createElement('div');
-                div.className = 'option glass p-3 rounded-lg border border-neonCyan/20 flex justify-between items-center';
-                div.innerHTML = `<span>${dur.label}</span> <i class="fa fa-whatsapp text-green-400"></i>`;
-                div.onclick = () => window.open(dur.url, '_blank');
-                modalContent.appendChild(div);
-            });
-
-            // Botón volver atrás
-            const backBtn = document.createElement('div');
-            backBtn.className = 'option glass p-3 rounded-lg border border-red-400/30 text-center text-red-300 mt-3';
-            backBtn.textContent = '⬅ Volver atrás';
-            backBtn.onclick = () => document.querySelector('.open-category-modal').click();
-            modalContent.appendChild(backBtn);
-        }
-
-        // Cerrar modal
-        closeModal.addEventListener('click', () => modal.classList.remove('active'));
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) modal.classList.remove('active');
         });
     </script>
-
 </body>
 </html>
