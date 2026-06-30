@@ -25,9 +25,6 @@
     </script>
     <style type="text/tailwindcss">
         @layer utilities {
-            .content-auto {
-                content-visibility: auto;
-            }
             .glass {
                 background: rgba(22, 22, 31, 0.65);
                 backdrop-filter: blur(12px);
@@ -52,6 +49,16 @@
                 from { opacity: 0; transform: translateY(8px); }
                 to { opacity: 1; transform: translateY(0); }
             }
+            .btn-wp {
+                background: linear-gradient(135deg, #00ccff20, #00ccff40);
+                border: 1px solid #00ccff50;
+                transition: all 0.3s ease;
+            }
+            .btn-wp:hover {
+                background: linear-gradient(135deg, #00ccff40, #00ccff60);
+                box-shadow: 0 0 12px #00ccff60;
+                transform: translateY(-1px);
+            }
         }
 
         body {
@@ -60,7 +67,6 @@
             overflow-x: hidden;
         }
 
-        /* Efecto partículas simples */
         .particles {
             position: fixed;
             top: 0;
@@ -72,17 +78,14 @@
     </style>
 </head>
 <body class="font-inter text-white min-h-screen relative z-10">
-    <!-- Fondo de partículas -->
     <div class="particles"></div>
 
     <div class="container mx-auto px-4 py-8 max-w-5xl">
-        <!-- Encabezado -->
         <header class="text-center mb-10">
             <h1 class="text-4xl md:text-5xl font-bold neon-text text-neonBlue mb-3">Andrxs Xit Store</h1>
             <p class="text-gray-300 text-lg">Bienvenido. Aquí encontrarás los mejores productos del mercado.</p>
         </header>
 
-        <!-- Pestañas de navegación -->
         <nav class="flex flex-wrap justify-center gap-3 mb-10">
             <button class="tab-btn glass px-5 py-3 rounded-xl border border-transparent hover:border-neonBlue/40 transition-all duration-300" data-tab="android">
                 📱 Android
@@ -98,7 +101,6 @@
             </button>
         </nav>
 
-        <!-- Contenido de secciones -->
         <main>
             <!-- Sección Android -->
             <section id="android" class="tab-content fade-in">
@@ -107,67 +109,100 @@
                 <div class="grid md:grid-cols-2 gap-6">
                     <!-- Prime Hook -->
                     <div class="glass rounded-2xl p-6 neon-border hover:shadow-[0_0_15px_rgba(0,204,255,0.2)] transition-shadow duration-300">
-                        <h3 class="text-xl font-bold mb-4 text-white">👅 PRIME HOOK 💀</h3>
-                        <ul class="space-y-3">
-                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                        <h3 class="text-xl font-bold mb-5 text-white">👅 PRIME HOOK 💀</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center p-2 rounded-lg">
                                 <span>1 Día</span>
-                                <span class="text-neonBlue font-medium">3 USD</span>
-                            </li>
-                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">3 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Prime%20Hook%201%20día." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
                                 <span>3 Días</span>
-                                <span class="text-neonBlue font-medium">4 USD</span>
-                            </li>
-                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">4 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Prime%20Hook%203%20días." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
                                 <span>7 Días</span>
-                                <span class="text-neonBlue font-medium">6 USD</span>
-                            </li>
-                            <li class="flex justify-between items-center">
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">6 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Prime%20Hook%207%20días." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
                                 <span>30 Días</span>
-                                <span class="text-neonBlue font-medium">13 USD</span>
-                            </li>
-                        </ul>
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">13 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Prime%20Hook%2030%20días." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Drip Client -->
+                    <!-- Drip Client Mobile -->
                     <div class="glass rounded-2xl p-6 neon-border hover:shadow-[0_0_15px_rgba(0,204,255,0.2)] transition-shadow duration-300">
-                        <h3 class="text-xl font-bold mb-4 text-white">📱 DRIP CLIENT MOBILE</h3>
-                        <ul class="space-y-3">
-                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                        <h3 class="text-xl font-bold mb-5 text-white">📱 DRIP CLIENT MOBILE</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center p-2 rounded-lg">
                                 <span>1 Día</span>
-                                <span class="text-neonBlue font-medium">2 USD</span>
-                            </li>
-                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">2 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Drip%20Client%20Mobile%201%20día." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
                                 <span>3 Días</span>
-                                <span class="text-neonBlue font-medium">5 USD</span>
-                            </li>
-                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">5 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Drip%20Client%20Mobile%203%20días." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
                                 <span>7 Días</span>
-                                <span class="text-neonBlue font-medium">7 USD</span>
-                            </li>
-                            <li class="flex justify-between items-center">
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">7 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Drip%20Client%20Mobile%207%20días." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
                                 <span>30 Días</span>
-                                <span class="text-neonBlue font-medium">13 USD</span>
-                            </li>
-                        </ul>
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">13 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Drip%20Client%20Mobile%2030%20días." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- HG Cheats -->
                     <div class="glass rounded-2xl p-6 neon-border md:col-span-2 hover:shadow-[0_0_15px_rgba(0,204,255,0.2)] transition-shadow duration-300">
-                        <h3 class="text-xl font-bold mb-4 text-white">🔥 HG CHEATS APK MOD</h3>
-                        <ul class="space-y-3">
-                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                        <h3 class="text-xl font-bold mb-5 text-white">🔥 HG CHEATS APK MOD</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center p-2 rounded-lg">
                                 <span>1 Día</span>
-                                <span class="text-neonBlue font-medium">3 USD</span>
-                            </li>
-                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">3 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20HG%20Cheats%20APK%20MOD%201%20día." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
                                 <span>10 Días</span>
-                                <span class="text-neonBlue font-medium">7 USD</span>
-                            </li>
-                            <li class="flex justify-between items-center">
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">7 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20HG%20Cheats%20APK%20MOD%2010%20días." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
                                 <span>30 Días</span>
-                                <span class="text-neonBlue font-medium">14 USD</span>
-                            </li>
-                        </ul>
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">14 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20HG%20Cheats%20APK%20MOD%2030%20días." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -176,25 +211,37 @@
             <section id="proxy-android" class="tab-content hidden fade-in">
                 <h2 class="text-2xl font-semibold mb-6 text-center text-neonBlue">🌐 Proxy Android</h2>
                 <div class="glass rounded-2xl p-6 max-w-xl mx-auto neon-border hover:shadow-[0_0_15px_rgba(0,204,255,0.2)] transition-shadow duration-300">
-                    <h3 class="text-xl font-bold mb-4 text-white">👻 PROXY DRIP CLIENT ☠️</h3>
-                    <ul class="space-y-3">
-                        <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                    <h3 class="text-xl font-bold mb-5 text-white">👻 PROXY DRIP CLIENT ☠️</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center p-2 rounded-lg">
                             <span>1 Día</span>
-                            <span class="text-neonBlue font-medium">3 USD</span>
-                        </li>
-                        <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                            <div class="flex gap-3 items-center">
+                                <span class="text-neonBlue font-medium">3 USD</span>
+                                <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Proxy%20Drip%20Client%201%20día." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center p-2 rounded-lg">
                             <span>3 Días</span>
-                            <span class="text-neonBlue font-medium">5 USD</span>
-                        </li>
-                        <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                            <div class="flex gap-3 items-center">
+                                <span class="text-neonBlue font-medium">5 USD</span>
+                                <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Proxy%20Drip%20Client%203%20días." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center p-2 rounded-lg">
                             <span>7 Días</span>
-                            <span class="text-neonBlue font-medium">7 USD</span>
-                        </li>
-                        <li class="flex justify-between items-center">
+                            <div class="flex gap-3 items-center">
+                                <span class="text-neonBlue font-medium">7 USD</span>
+                                <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Proxy%20Drip%20Client%207%20días." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center p-2 rounded-lg">
                             <span>30 Días</span>
-                            <span class="text-neonBlue font-medium">16 USD</span>
-                        </li>
-                    </ul>
+                            <div class="flex gap-3 items-center">
+                                <span class="text-neonBlue font-medium">16 USD</span>
+                                <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Proxy%20Drip%20Client%2030%20días." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -204,52 +251,79 @@
                 <div class="grid md:grid-cols-2 gap-6">
                     <!-- Flourite -->
                     <div class="glass rounded-2xl p-6 neon-border hover:shadow-[0_0_15px_rgba(0,204,255,0.2)] transition-shadow duration-300">
-                        <h3 class="text-xl font-bold mb-4 text-white">🔥 FLOURITE 🍎</h3>
-                        <ul class="space-y-3">
-                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                        <h3 class="text-xl font-bold mb-5 text-white">🔥 FLOURITE 🍎</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center p-2 rounded-lg">
                                 <span>1 Día</span>
-                                <span class="text-neonBlue font-medium">6 USD</span>
-                            </li>
-                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">6 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Flourite%201%20día." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
                                 <span>1 Día + Certificado</span>
-                                <span class="text-neonBlue font-medium">13 USD</span>
-                            </li>
-                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">13 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Flourite%201%20día%20con%20certificado." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
                                 <span>7 Días</span>
-                                <span class="text-neonBlue font-medium">17 USD</span>
-                            </li>
-                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">17 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Flourite%207%20días." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
                                 <span>7 Días + Certificado</span>
-                                <span class="text-neonBlue font-medium">24 USD</span>
-                            </li>
-                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">24 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Flourite%207%20días%20con%20certificado." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
                                 <span>30 Días</span>
-                                <span class="text-neonBlue font-medium">35 USD</span>
-                            </li>
-                            <li class="flex justify-between items-center">
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">35 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Flourite%2030%20días." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
                                 <span>30 Días + Certificado</span>
-                                <span class="text-neonBlue font-medium">43 USD</span>
-                            </li>
-                        </ul>
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">43 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Flourite%2030%20días%20con%20certificado." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Monite Cheats -->
                     <div class="glass rounded-2xl p-6 neon-border hover:shadow-[0_0_15px_rgba(0,204,255,0.2)] transition-shadow duration-300">
-                        <h3 class="text-xl font-bold mb-4 text-white">✅ MONITE CHEATS</h3>
-                        <ul class="space-y-3">
-                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                        <h3 class="text-xl font-bold mb-5 text-white">✅ MONITE CHEATS</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center p-2 rounded-lg">
                                 <span>Certificado</span>
-                                <span class="text-neonBlue font-medium">8 USD</span>
-                            </li>
-                            <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">8 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20el%20certificado%20de%20Monite%20Cheats." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
                                 <span>Key 7 Días</span>
-                                <span class="text-neonBlue font-medium">12 USD</span>
-                            </li>
-                            <li class="flex justify-between items-center">
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">12 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20la%20Key%20de%20Monite%20Cheats%20de%207%20días." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded-lg">
                                 <span>Key 30 Días</span>
-                                <span class="text-neonBlue font-medium">27 USD</span>
-                            </li>
-                        </ul>
+                                <div class="flex gap-3 items-center">
+                                    <span class="text-neonBlue font-medium">27 USD</span>
+                                    <a href="https://wa.me/573219925715?text=Quiero%20comprar%20la%20Key%20de%20Monite%20Cheats%20de%2030%20días." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -258,27 +332,36 @@
             <section id="proxy-ios" class="tab-content hidden fade-in">
                 <h2 class="text-2xl font-semibold mb-6 text-center text-neonBlue">🌐 Proxy iOS</h2>
                 <div class="glass rounded-2xl p-6 max-w-xl mx-auto neon-border hover:shadow-[0_0_15px_rgba(0,204,255,0.2)] transition-shadow duration-300">
-                    <h3 class="text-xl font-bold mb-4 text-white">👽 PROXY POTATSO iOS 💥</h3>
-                    <ul class="space-y-3">
-                        <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                    <h3 class="text-xl font-bold mb-5 text-white">👽 PROXY POTATSO iOS 💥</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center p-2 rounded-lg">
                             <span>1 Día</span>
-                            <span class="text-neonBlue font-medium">4 USD</span>
-                        </li>
-                        <li class="flex justify-between items-center border-b border-lightGray/40 pb-2">
+                            <div class="flex gap-3 items-center">
+                                <span class="text-neonBlue font-medium">4 USD</span>
+                                <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Proxy%20Potatso%20iOS%201%20día." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center p-2 rounded-lg">
                             <span>7 Días</span>
-                            <span class="text-neonBlue font-medium">10 USD</span>
-                        </li>
-                        <li class="flex justify-between items-center">
+                            <div class="flex gap-3 items-center">
+                                <span class="text-neonBlue font-medium">10 USD</span>
+                                <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Proxy%20Potatso%20iOS%207%20días." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center p-2 rounded-lg">
                             <span>30 Días</span>
-                            <span class="text-neonBlue font-medium">26 USD</span>
-                        </li>
-                    </ul>
+                            <div class="flex gap-3 items-center">
+                                <span class="text-neonBlue font-medium">26 USD</span>
+                                <a href="https://wa.me/573219925715?text=Quiero%20comprar%20Proxy%20Potatso%20iOS%2030%20días." target="_blank" class="btn-wp px-3 py-1 rounded-lg text-sm">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
 
         <footer class="mt-12 text-center text-gray-400 text-sm">
-            <p>Versión de prueba técnica • Solo para verificar funcionamiento</p>
+            <p>Versión de prueba • Todos los enlaces abren WhatsApp directamente</p>
         </footer>
     </div>
 
@@ -289,42 +372,33 @@
 
         tabButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // Quitar estado activo
                 tabButtons.forEach(btn => btn.classList.remove('tab-active'));
                 tabContents.forEach(content => content.classList.add('hidden'));
-
-                // Agregar estado activo
                 button.classList.add('tab-active');
-                const tabId = button.getAttribute('data-tab');
-                document.getElementById(tabId).classList.remove('hidden');
+                document.getElementById(button.dataset.tab).classList.remove('hidden');
             });
         });
-
-        // Activar primera pestaña por defecto
         tabButtons[0].classList.add('tab-active');
 
-        // Efecto partículas básico
+        // Efecto partículas
         const particlesContainer = document.querySelector('.particles');
         for (let i = 0; i < 40; i++) {
-            const particle = document.createElement('div');
-            particle.style.position = 'absolute';
-            particle.style.width = Math.random() * 3 + 'px';
-            particle.style.height = particle.style.width;
-            particle.style.background = 'rgba(0, 204, 255, ' + (Math.random() * 0.3 + 0.1) + ')';
-            particle.style.borderRadius = '50%';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.top = Math.random() * 100 + '%';
-            particle.style.animation = 'float ' + (Math.random() * 15 + 10) + 's linear infinite';
-            particlesContainer.appendChild(particle);
+            const p = document.createElement('div');
+            p.style.cssText = `
+                position:absolute; width:${Math.random()*3+1}px; height:${Math.random()*3+1}px;
+                background:rgba(0,204,255,${Math.random()*0.3+0.1}); border-radius:50%;
+                left:${Math.random()*100}%; top:${Math.random()*100}%;
+                animation:float ${Math.random()*15+10}s linear infinite;
+            `;
+            particlesContainer.appendChild(p);
         }
 
-        // Animación de flotación
         const style = document.createElement('style');
         style.textContent = `
             @keyframes float {
-                0% { transform: translate(0, 0); }
-                50% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px); }
-                100% { transform: translate(0, 0); }
+                0% { transform: translate(0,0); }
+                50% { transform: translate(${Math.random()*80-40}px, ${Math.random()*80-40}px); }
+                100% { transform: translate(0,0); }
             }
         `;
         document.head.appendChild(style);
